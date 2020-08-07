@@ -1,0 +1,23 @@
+{
+  "name": "angelWear",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/munan951216/angelWear.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/munan951216/angelWear/issues"
+  },
+  "homepage": "https://github.com/munan951216/angelWear#readme",
+  "dependencies": {
+    "@vant/weapp": "^1.4.3"
+  }
+}
