@@ -45,7 +45,7 @@
 <!-- 我的订单导航开始 -->
 <view class="jbn_meOrderList">
   <van-grid column-num="5" border="{{false}}">
-    <van-grid-item icon="{{item.icon}}" wx:for="{{orderList}}" wx:key="{{index}}" text="{{item.txt}}" catchtap="toOrder" data-index="{{index}}" />
+    <van-grid-item icon="{{item.icon}}" wx:for="{{orderList}}" wx:key="*this" text="{{item.txt}}" catchtap="toOrder" data-index="{{index}}" />
   </van-grid>
 </view>
 <!-- 我的订单导航结束 -->

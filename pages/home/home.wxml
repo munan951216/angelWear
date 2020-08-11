@@ -1,7 +1,5 @@
 <view>
-<<<<<<< HEAD
 
-=======
 	<scroll-view scroll-y="true" style="700px">
 
 		<!-- 封装轮博图的组件 -->
@@ -28,5 +26,4 @@
 	    <text class="iconfont &#xe600;" class="image"></text>
 	 </view>
 
->>>>>>> fd45d18093a94f555684b0fe7ee2b15a3030738a
 </view>

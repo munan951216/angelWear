@@ -4,68 +4,31 @@
 		"ignore": []
 	},
 	"setting": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-		"urlCheck": true,
-		"scopeDataCheck": false,
-		"coverView": true,
-=======
 		"urlCheck": false,
->>>>>>> dev
-=======
-		"urlCheck": false,
->>>>>>> fd45d18093a94f555684b0fe7ee2b15a3030738a
 		"es6": true,
 		"enhance": false,
 		"postcss": true,
-<<<<<<< HEAD
-		"compileHotReLoad": false,
-=======
->>>>>>> fd45d18093a94f555684b0fe7ee2b15a3030738a
 		"preloadBackgroundData": false,
 		"minified": true,
-<<<<<<< HEAD
-=======
 		"newFeature": true,
 		"coverView": true,
 		"nodeModules": true,
-<<<<<<< HEAD
->>>>>>> dev
-=======
->>>>>>> fd45d18093a94f555684b0fe7ee2b15a3030738a
 		"autoAudits": false,
-		"newFeature": true,
-		"uglifyFileName": false,
-		"uploadWithSourceMap": true,
-		"useIsolateContext": true,
-		"nodeModules": true,
-		"enhance": false,
-		"useCompilerModule": true,
-		"userConfirmedUseCompilerModuleSwitch": false,
 		"showShadowRootInWxmlPanel": true,
-<<<<<<< HEAD
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-=======
 		"scopeDataCheck": false,
 		"uglifyFileName": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
 		"compileHotReLoad": false,
->>>>>>> fd45d18093a94f555684b0fe7ee2b15a3030738a
 		"babelSetting": {
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-<<<<<<< HEAD
-		}
-=======
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": false,
+		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false
->>>>>>> fd45d18093a94f555684b0fe7ee2b15a3030738a
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.12.0",
