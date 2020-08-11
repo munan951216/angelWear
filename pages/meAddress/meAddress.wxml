@@ -1,6 +1,8 @@
 <van-nav-bar title="选择收货地址" left-arrow bind:click-left="onClickLeft" />
-<view class="jbn_meAddAddress">
-<text>+</text>
-<text>新增收货地址</text>
-<van-icon name="arrow" />
+<view class="jbn_meAddAddress" bindtap="toAdd">
+  <view>
+    <text>+</text>
+    <text>新增收货地址</text>
+  </view>
+  <van-icon name="arrow" />
 </view>

@@ -1,0 +1,139 @@
+/* pages/catexq/catexq.wxss */
+swiper-item .lcj_catexqBanner{
+  width: 100%;
+  height: 720rpx;
+}
+.lcj_cateXqxx{
+  width: 100%;
+  height: 220rpx;
+  
+}
+.banner{
+  height:300px;
+}
+.banner swiper{
+  height:100%;
+}
+.lcj_catexqBt{
+  width: 100%;
+  font-size: 35rpx;
+  font-weight: bolder;
+}
+.lcj_catexqFx{
+  font-size: 30rpx;
+  color: #d94444;
+  font-weight: bolder;
+  margin: 20rpx 0;
+}
+.lcj_cateJg{
+width: 100%;
+display: flex;
+justify-content: space-between;
+}
+.lcj_fh{
+  font-size: 24rpx;
+  color: #e53e3b;
+}
+.lcj_catexqXj{
+  font-size: 30rpx;
+  color: #e53e3b;
+  font-weight: bolder;
+}
+.lcj_catexqYj{
+  font-size: 30rpx;
+  color: #b3b3b3;
+ text-decoration: line-through;
+}
+.lcj_catexqM{
+  font-size: 30rpx;
+  color: #d4d4d4;
+}
+.lcj_catez{
+width:331rpx ;
+display: flex;
+justify-content: space-around;
+}
+.lcj_cateIcon{
+  width: 60rpx;
+  height: 60rpx;
+}
+.lcj_catePt{
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 25rpx;
+  color: #797979;
+  background: #f2f2f2;
+}
+.lcj_cateCt{
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  border-bottom: 2px solid #e6e6e6;
+  font-size: 25rpx;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10rpx;
+  box-sizing:border-box;
+}
+.lcj_cateSl{
+  font-size: 30rpx;
+  color: #878787;
+}
+.lcj_cateXz{
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  border-bottom: 2px solid #e6e6e6;
+  font-size: 25rpx;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10rpx;
+  box-sizing:border-box;
+}
+
+.lcj_cateJs{
+  width: 100%;
+  margin-top: 20rpx;
+  text-align: center;
+}
+.lcj_cateDdl{
+  width: 100%;
+  height: 100rpx;
+  line-height: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  display: flex;
+
+ 
+}
+.lcj_cateXqtb{
+  width: 290rpx;
+  display: flex;
+  justify-content: space-around;
+  background: #fff;
+  height: 100rpx;
+  align-items: center;
+
+}
+.lcj_tb{
+  width: 62rpx;
+  height: 62rpx;
+}
+.lcj_cateJgwc{
+  width: 229rpx;
+  height: 102rpx;
+  line-height: 102rpx;
+  text-align: center;
+  color:#fff;
+  background: #ff6850;
+}
+.lcj_cateLjgm{
+  width: 229rpx;
+  height: 102rpx;
+  line-height: 102rpx;
+  text-align: center;
+  color:#fff;
+  background: #e64340;
+}

@@ -160,3 +160,4 @@
 </view>
 <!-- 授权登录 -->
 <template is="jbn_orgin" data="{{jbn_origin:jbn_origin}}"></template>
+

@@ -14,7 +14,7 @@
 <!-- 搜索框结束 -->
 <!-- 导航栏开始 -->
 <view class="jbn_searchNav">
-  <text wx:for="{{searchNav}}" wx:key="{{index}}" >
+  <text wx:for="{{ searchNav }}" class="{{index==activeIndex ? 'active':'' }}" catchtap="changeActive" data-index="{{ index }}">
     {{item}}
   </text>
 </view>

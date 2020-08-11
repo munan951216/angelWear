@@ -1,35 +1,37 @@
 // pages/me/me.js
+const WXAPI = require('apifm-wxapi');
+const index = require('../../utils/index.js')
+WXAPI.init("jbn1995")
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    orderList: [
-      {
-        txt: "待付款",
-        icon: "pending-payment"
-      },
-      {
-        txt: "待发货",
-        icon: "send-gift-o"
-      },
-      {
-        txt: "待收货",
-        icon: "logistics"
-      },
-      {
-        txt: "待评价",
-        icon: "flower-o"
-      },
-      {
-        txt: "售后",
-        icon: "after-sale"
-      },
+    orderList: [{
+      txt: "待付款",
+      icon: "pending-payment"
+    },
+    {
+      txt: "待发货",
+      icon: "send-gift-o"
+    },
+    {
+      txt: "待收货",
+      icon: "logistics"
+    },
+    {
+      txt: "待评价",
+      icon: "flower-o"
+    },
+    {
+      txt: "售后",
+      icon: "after-sale"
+    },
     ],
     jbn_origin: false,
     hidden: true,
-    avatarUrl:"",
-    nickName:""
+    avatarUrl: '',
+    nickName: ""
   },
   // 跳转到我的资产页面
   toAssets() {
@@ -82,78 +84,121 @@ Page({
   // 点击立即登录，进行登录授权
   goLogin() {
     this.setData({
-      jbn_origin:true
+      jbn_origin: true
     })
   },
   // 点击退出登录，取消登录
-  cancelLogin(){
+  cancelLogin() {
     this.setData({
       jbn_origin: false
     })
   },
-  // 点击允许，进行登录
-  processLogin(e) {
-    console.log(e)
-    if (!e.detail.userInfo) {
-      wx.showToast({
-        title: '已取消',
-        icon: "none"
-      })
-      return
-    }
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
-
+  onShow: function () {
+    this.setUseRInfo()
+    index.checkHasLogined().then(isLogin => {
+      if (isLogin) {
+        wx.showToast({
+          title: "登录成功",
+        })
+        this.setData({
+          jbn_origin: !isLogin,
+          hidden: !isLogin
+        })
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
+  },
+  // 页面刷新的时候请求用户数据
+  setUseRInfo() {
+    wx.getUserInfo({
+      success: (res) => {
+        this.setData({
+          avatarUrl: JSON.parse(res.rawData).avatarUrl,
+          nickName: JSON.parse(res.rawData).nickName
+        })
+
+      }
+    })
+  },
+  // 点击允许，进行登录
+  processLogin(e) {
+    console.log(e.detail.userInfo)
+    if (!e.detail.userInfo) {
+      wx.showToast({
+        title: '已取消',
+        icon: "none"
+      })
+      return false
+    }
+    this.setData({
+      avatarUrl: e.detail.userInfo.avatarUrl,
+      nickName: e.detail.userInfo.nickName
+    })
+    console.log(this.data.avatarUrl)
+    console.log(this.data.nickName)
+
+    // 如果有userinfo ,就调用register注册方法
+    index.register(this)
+
+
+
+  },
+  logout(page) {
+    wx.clearStorageSync()
+    wx.reLaunch({
+      url: '/pages/me/me'
+    })
   }
+
 })

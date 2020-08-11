@@ -7,9 +7,16 @@ Page({
   data: {
 
   },
+  // 返回上一个页面
   onClickLeft() {
     wx.navigateBack({
       delta: 1
+    })
+  },
+  // 跳转到新增收货地址页面
+  toAdd(){
+    wx.navigateTo({
+      url: '/pages/toAdd/toAdd',
     })
   },
   /**

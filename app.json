@@ -1,6 +1,5 @@
 {
   "pages": [
-    
     "pages/me/me",
     "pages/cart/cart",
     "pages/home/home",
@@ -13,8 +12,9 @@
     "pages/meInvioce/meInvioce",
     "pages/meInv/meInv",
     "pages/meAddress/meAddress",
-    "pages/search/search"
-    
+    "pages/search/search",
+    "pages/catexq/catexq",
+    "pages/toAdd/toAdd"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -51,6 +51,7 @@
       }
     ]
   },
+  "style": "v2",
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
     "van-button": "@vant/weapp/button/index"

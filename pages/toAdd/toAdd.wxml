@@ -1,0 +1,6 @@
+<van-nav-bar title="收货地址" left-arrow bind:click-left="onClickLeft" />
+<!-- 获取微信收货地址 -->
+<view class="jbn_getAdd">
+<text>获取微信收货地址</text>
+<van-icon name="arrow" />
+</view>

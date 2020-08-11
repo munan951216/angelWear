@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/munan951216/angelWear#readme",
   "dependencies": {
-    "@vant/weapp": "^1.4.3",
-    "apifm-wxapi": "^3.13.0"
+    "@vant/weapp": "^1.4.3"
   }
 }

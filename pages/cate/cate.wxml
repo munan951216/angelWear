@@ -1,4 +1,58 @@
 <!--pages/cate/cate.wxml-->
-<view>
-分类
+<view class="lcj_cate">
+	<!-- 搜索 -->
+	<view class="lcj_cateseach">
+		<view class="lcj_seach">
+			<!-- input搜索框 -->
+			<input placeholder="输入搜索关键字">
+			</input>
+			<image class="lcj_icon_seach" src="/assets/icon/cate_seach.png"></image>
+		</view>
+	</view>
+	<!-- 下面分类 -->
+	<view class="lcj_catelist">
+		<!-- 左边侧边栏 -->
+		<view class="lcj_left">
+			<van-sidebar active-key="{{ activeKey }}">
+				<van-sidebar-item catchtap="lcj_cateLeft" data-id="{{item.id}}" wx:for="{{ catelist }}" title="{{ item.name }}" wx:key="index" />
+			</van-sidebar>
+		</view>
+		<!-- 右侧分类列表 -->
+		<view class="lcj_right">
+			<!-- 右侧每个商品信息 -->
+			<view class="lcj_rightzwsj" wx:if="{{ lcjcate.length ==0 }}">—————暂无数据—————</view>
+			<view catchtap="lcj_shoplist" data-id="{{item.id}}" class="lcj_rightlist" wx:for="{{ lcjcate }}" wx:key="index">
+				<!-- 图片 -->
+			
+				<image src="{{item.pic}}"></image>
+				<view class="lcj_cartexx">
+					<!-- 标题 -->
+					<text class="lcj_bt">{{ item.characteristic }}</text>
+					<view class="lcj_cartop">
+						<text class="lcj_cartopjg">￥{{ item.originalPrice }}</text>
+
+						<image catchtap="lcj_cateGwc" class="lcj_cartimg" src="/assets/icon/cart_active.png">
+						</image>
+					</view>
+					<view class="lcj_carbuttom">
+						<text class="lcj_cateys">已售{{ item.numberFav}}</text>
+						<text>评价+{{ item.weight}} 积分</text>
+					</view>
+				</view>
+
+
+			</view>
+		</view>
+	</view>
+
+
+<!-- 点击购物车弹出层 -->
+	<van-popup show="{{ show }}" closeable position="bottom" custom-style="height: 20%" bind:close="onClose" >
+	<text>颜色</text>
+	
+	</van-popup>
+	
+	
+
+
 </view>
