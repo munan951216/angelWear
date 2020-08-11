@@ -4,7 +4,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    orderList: [{
+    orderList: [
+      {
         txt: "待付款",
         icon: "pending-payment"
       },

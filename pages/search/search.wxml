@@ -1,2 +1,26 @@
-<!--pages/search/search.wxml-->
-<text>pages/search/search.wxml</text>
+<!-- 搜索页面商品列表页面 -->
+<van-nav-bar title="商品列表" left-arrow bind:click-left="onClickLeft" border="{{false}}" />
+<!-- 搜索框开始 -->
+<view class="jbn_search">
+  <van-search
+  class="jbn_searchKey"
+  value="{{ value }}"
+  shape="round"
+  background="#fff"
+  placeholder="输入搜索关键词"
+/>
+<van-icon name="qr" size="40rpx"/>
+</view>
+<!-- 搜索框结束 -->
+<!-- 导航栏开始 -->
+<view class="jbn_searchNav">
+  <text wx:for="{{searchNav}}" wx:key="{{index}}" >
+    {{item}}
+  </text>
+</view>
+<!-- 导航栏结束 -->
+<!-- 商品列表样式1开始 -->
+<view class="jbn_searchList">
+
+</view>
+<!-- 商品列表样式1结束 -->

@@ -1,5 +1,6 @@
 {
   "pages": [
+    
     "pages/me/me",
     "pages/cart/cart",
     "pages/home/home",
@@ -13,6 +14,7 @@
     "pages/meInv/meInv",
     "pages/meAddress/meAddress",
     "pages/search/search"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
