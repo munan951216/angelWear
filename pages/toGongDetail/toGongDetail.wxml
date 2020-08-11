@@ -1,0 +1,10 @@
+
+<import src="../../wxParse/wxParse.wxml" />
+<view>
+    <view style="font-size:14px;font-weight:600">
+    {{detail.title}}
+    </view>
+    <view>
+ <template is="wxParse" data="{{wxParseData:content.nodes}}" />
+</view>
+</view>

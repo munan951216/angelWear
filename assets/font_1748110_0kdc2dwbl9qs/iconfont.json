@@ -1,0 +1,16 @@
+{
+  "id": "1748110",
+  "name": "model",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "11578007",
+      "name": "礼品",
+      "font_class": "liping",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    }
+  ]
+}

@@ -1,0 +1,158 @@
+.bargain_container_wrapper {
+  margin-top: 25px;
+  border-top: 1px solid #e6e6e6;
+  width: 100%;
+  position: relative;
+  padding-top: 25px;
+  overflow:visible
+}
+
+.bargain_item_container {
+  width: 98%;
+  height: 153px;
+  display: inline-flex;
+  margin: 10px 0px 10px 10px;
+  background-color: #e6e6e6;
+  padding: 8px;
+}
+
+.bargain_item_container image {
+  width: 42%;
+  height: 140px;
+  padding-top: 5px;
+}
+
+.bargain_item_container .bargain_right {
+  width: 55%;
+}
+
+.title_name {
+  color: #5D5D5D;
+  margin: 8px 15px 10px 8px;
+}
+
+.save_time {
+  margin-left:15px;
+  color: white;
+  background-color: #E64340;
+  height: 30px;
+  line-height:16px;
+  font-size: 12px;
+}
+.bargain_gooslist{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 5px;
+}
+.new_price{
+  margin-left: 15px;
+  font-size: 20px;
+  color:#E64340;
+}
+.old_price{
+  color: grey;
+  text-decoration: line-through;
+  margin-left: 5px;
+}
+.bargain_gooslist  button{
+  width: 70px;
+  height: 30px;
+  font-size: 12px;
+  background-color: red;
+  color:white;
+  line-height: 30px;
+  border-radius: 25px;
+}
+.bargain_title{
+  width: 100px;
+  height: 40px;
+  background-color: white;
+  color: grey;
+  position: absolute;
+  top:-22px;
+  left:38%;
+  line-height: 40px;
+  text-align: center;
+  z-index:999;
+
+}
+.kanjia_title{
+  font-size: 16px;
+  font-weight: 500;
+  height: 50px;
+  width: 100%;
+  line-height: 50px;
+  margin-left: 15px;
+  border-bottom:1px solid #e6e6e6;
+  border-top:1px solid #e6e6e6;
+}
+.kanjai_item_wrapper{
+  width: 100%;
+  display: inline-flex;
+  height: 122px;
+}
+.kanjia_item_icon{
+  width:20%;
+  height:112px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+.kanjia_item_icon image{
+  width: 90%;
+  height: 65px;
+ 
+}
+.kanjia_right{
+  width:75%;
+  margin-left: 5%;
+  margin-top: 20px;
+}
+.kanjia_item_title{
+ width:100%;
+ white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+font-weight: 500;
+margin-bottom: 5px;
+}
+.new_price{
+  color:red;
+  font-size: 12px;
+}
+.kanjia_item_price_wrapper{
+  width: 100%;
+  display: inline-flex;
+  font-size: 12px;
+  margin-top: 20px;
+}
+.lp_good_item_wrapper{
+   width: 50%;
+}
+.lp_good_container{
+  width: 100%;
+  display: inline-flex;
+  flex-wrap: wrap;
+  font-size: 12px;
+}
+.lp_good_icon{
+  width: 100%;
+}
+.lp_good_icon image{
+  width: 98%;
+}
+.lp_price{
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.lp_hot_image{
+  width: 50%;
+}
+.lp_hot_image image{
+  width: 100%;
+  height: 180px;
+}

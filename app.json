@@ -3,7 +3,11 @@
     "pages/home/home",
     "pages/me/me",
     "pages/cate/cate",
-    "pages/cart/cart"
+    "pages/cart/cart",
+    "pages/toGongDetail/toGongDetail",
+    "pages/lower/lower",
+    "pages/catexq/catexq",
+    "pages/gifts/gifts"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -40,7 +44,6 @@
       }
     ]
   },
-  "style": "v2",
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
     "van-button": "@vant/weapp/button/index"
