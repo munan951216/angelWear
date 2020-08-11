@@ -1,0 +1,35 @@
+/* pages/meInvioce/meInvioce.wxss */
+.jbn_meInvioce{
+  width: 702rpx;
+  height:824rpx;
+  /* background:#ccc; */
+  margin:24rpx auto;
+  border-radius: 15rpx;
+  padding:25rpx 0rpx;
+  box-sizing: border-box;
+  background:#fff;
+}
+.jbn_meMain{
+  width:100%;
+  height:1232rpx;
+  background:#f0f1f5;
+  padding:24rpx;
+  box-sizing: border-box;
+  margin-top:-24rpx;
+}
+.jbn_meHead{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding:24rpx;
+  box-sizing: border-box;
+}
+.jbn_meHead text:nth-child(1){
+  font-weight: bold;
+  font-size: 28rpx;
+}
+.jbn_meHead text:nth-child(2){
+  color:red;
+  font-size: 26rpx;
+  font-weight: blod;
+}

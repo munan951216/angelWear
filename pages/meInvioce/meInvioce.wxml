@@ -1,0 +1,21 @@
+<van-nav-bar title="发票申请" left-arrow bind:click-left="onClickLeft" />
+<!-- 发票申请信息部分开始 -->
+<view class="jbn_meMain">
+  <view class="jbn_meInvioce">
+    <view class="jbn_meHead">
+      <text>发票信息</text>
+      <text>读取微信开票信息</text>
+    </view>
+    <van-field value="{{}}" clearable label="工厂账号" placeholder="api工厂注册的手机号码" bind:click-icon="onClickIcon" />
+    <van-field value="{{}}" clearable label="发票抬头" placeholder="公司名称" bind:click-icon="onClickIcon" />
+    <van-field value="{{}}" clearable label="税号" placeholder="填写税号" bind:click-icon="onClickIcon" />
+    <van-field value="服务费" label="发票内容"  disabled  />
+    <van-field value="{{}}" clearable label="发票金额" placeholder="申请开票金额" bind:click-icon="onClickIcon" />
+    <van-field value="{{}}" clearable label="地址与电话" placeholder="发票栏目处填写的地址与电话" bind:click-icon="onClickIcon" />
+    <van-field value="{{}}" clearable label="开户行与账号" placeholder="发票栏目处填写的开户行与账号" bind:click-icon="onClickIcon" />
+    <van-field value="{{}}" clearable label="备注" placeholder="如有特殊说明,请告诉我们" bind:click-icon="onClickIcon" border="{{ false }}"/>
+
+  </view>
+  <van-button round color="#f2b445" block>申请发票</van-button>
+</view>
+<!-- 发票申请信息部分结束 -->

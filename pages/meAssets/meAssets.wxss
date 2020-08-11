@@ -1,0 +1,38 @@
+.jbn_meAssets{
+  width:100%;
+  height:318rpx;
+  background:#d76058;
+  padding:56rpx 35rpx;
+  box-sizing: border-box;
+}
+.jbn_meAssetsList{
+  width:100%;
+  height:106rpx;
+  padding:10rpx 0rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+}
+.jbn_meAssetsList view{
+  display:flex;
+  flex-direction: column;
+  flex:1;
+  text-align:center;
+  font-size: 24rpx;
+  color: #fff7e8;
+  justify-content: space-between;
+}
+.jbn_meTi{
+  width:680rpx;
+  height:100rpx;
+  padding-top:38rpx;
+  box-sizing: border-box;
+}
+.jbn_meTi text{
+  padding:18rpx 38rpx;
+  border: 2rpx solid #fff2ff;
+  border-radius: 10rpx;
+  font-size:24rpx;
+  color:#fff7e8;
+  float: right;
+}
