@@ -1,11 +1,13 @@
-const {getGoodList} = require('../../http/lp_api')
+const {
+  getLower
+} = require('../../http/lp_api')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-     cartItem:[]
+    title:{}
   },
 
   /**
@@ -15,14 +17,22 @@ Page({
 
   },
 
+
+  toZhan(e){
+    let id = e.currentTarget.dataset.id;
+    console.log("id",id)
+    wx.navigateTo({
+       url:`/pages/toGongDetail/toGongDetail?id=${id}`
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    getGoodList().then((res)=>{
-      console.log(res)
+    getLower().then((res) => {
+      console.log("lplplp", res)
       this.setData({
-        cartItem:res.slice(0,3)
+        title: res
       })
     })
   },

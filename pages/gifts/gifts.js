@@ -1,30 +1,27 @@
-const {getGoodList} = require('../../http/lp_api')
+const {getGifts} = require('../../http/lp_api')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-     cartItem:[]
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    getGifts().then((res)=>{
+     console.log(res)
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    getGoodList().then((res)=>{
-      console.log(res)
-      this.setData({
-        cartItem:res.slice(0,3)
-      })
-    })
+
   },
 
   /**

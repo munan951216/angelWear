@@ -4,6 +4,7 @@
     "pages/cart/cart",
     "pages/home/home",
     "pages/cate/cate",
+<<<<<<< HEAD
     "pages/meAssets/meAssets",
     "pages/meIntegral/meIntegral",
     "pages/meGrow/meGrow",
@@ -13,6 +14,13 @@
     "pages/meInv/meInv",
     "pages/meAddress/meAddress",
     "pages/search/search"
+=======
+    "pages/cart/cart",
+    "pages/toGongDetail/toGongDetail",
+    "pages/lower/lower",
+    "pages/catexq/catexq",
+    "pages/gifts/gifts"
+>>>>>>> fd45d18093a94f555684b0fe7ee2b15a3030738a
   ],
   "window": {
     "backgroundTextStyle": "light",

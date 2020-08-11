@@ -1,1 +1,30 @@
-/* pages/home/home.wxss */
+@font-face {
+  font-family: 'iconfont';  /* project id 1748110 */
+  src: url('//at.alicdn.com/t/font_1748110_wc902opnkg.eot');
+  src: url('//at.alicdn.com/t/font_1748110_wc902opnkg.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1748110_wc902opnkg.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1748110_wc902opnkg.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1748110_wc902opnkg.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1748110_wc902opnkg.svg#iconfont') format('svg');
+}
+
+.icon_img{
+  width: 100%;
+  height: 160px;
+}
+.lp_gifts{
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background-color: white;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom:75px;
+  right:10px;
+}
+.lp_gifts  .image{
+  width: 30px;
+  height:30px;
+}

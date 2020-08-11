@@ -1,0 +1,89 @@
+<view >
+	<!-- 限时秒杀商品 -->
+	<view class="bargain_container_wrapper" >
+		<text class="bargain_title">限时秒杀</text>
+		<view wx:for="{{bargain}}" wx:key="index" class="bargain_item_container">
+			<image src="{{item.pic}}"></image>
+			<view class="bargain_right">
+				<view class="title_name">{{item.name}}</view>
+				<button class="save_time">剩余：2887时11分25秒</button>
+				<view class="bargain_gooslist">
+					<text class="new_price">￥{{item.minPrice}}</text>
+					<text class="old_price">￥{{item.originalPrice}}</text>
+					<button size="mini" bindtap="toGoodDetail" data-id="{{item.id}}">立即抢购</button>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 爆品推荐 -->
+	<view class="bargain_container_wrapper">
+		<text class="bargain_title">爆品推荐</text>
+		<van-grid column-num="2" gutter="{{ 10 }}">
+			<van-grid-item wx:for="{{hotgood}}" use-slot class="lp_hot_image"
+			data-id="{{item.id}}}"
+			bindtap="toGOOd">
+				<image src="{{item.pic}}"></image>
+				<view style="font-size:14px">{{item.name}}</view>
+				<view style="display:inline-flex">
+					<text style="color:red;font-size:12px">￥{{item.minPrice}}</text>
+					<text style="text-decoration:line-through;font-size:12px;color:grey">￥{{item.originalPrice}}</text>
+				</view>
+			</van-grid-item>
+		</van-grid>
+	</view>
+	<!-- 砍价商品 -->
+	<view style="height:164px">
+		<view class="kanjia_title">疯狂砍价</view>
+		<view>
+			<view wx:for="{{kanjia}}" class="kanjai_item_wrapper">
+				<view class="kanjia_item_icon">
+					<image src="{{item.pic}}"></image>
+				</view>
+				<view class="kanjia_right">
+					<text class="kanjia_item_title">{{item.name}}</text>
+					<text style="color:#B4B4B4;">{{item.characteristic}}</text>
+					<view class="kanjia_item_price_wrapper">
+						<text>原价:{{item.originalPrice}}</text>
+						<text class="new_price">低价:{{item.kanjiaPrice}}</text>
+						<button size="mini">砍价</button>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 全民拼团商品 -->
+	<view class="bargain_container_wrapper">
+		<text class="bargain_title">全民拼团</text>
+		<van-grid column-num="1">
+			<van-grid-item wx:for="{{ tuan }}" use-slot>
+				<image src="{{item.pic}}" style="width:96%;height:280px"></image>
+				<view>{{item.name}}</view>
+				<view style="margin:0px">{{item.characteristic}}</view>
+				<view style="display:flex;width:100%">
+					<text style="color:red;font-size:20px;margin-left:15px">￥{{item.minPrice}}</text>
+					<text style="color:grey;text-decoration:line-through">￥{{item.originalPrice}}</text>
+					<button>砍价</button>
+				</view>
+			</van-grid-item>
+		</van-grid>
+	</view>
+	<!-- 商品列表 -->
+	<view class="bargain_container_wrapper">
+		<text class="bargain_title">商品列表</text>
+		<view class="lp_good_container">
+			<view class="lp_good_item_wrapper" wx:for="{{list}}"
+			data-id="{{item.id}}"
+			bindtap="toDetailGood">
+				<view class="lp_good_icon">
+					<image src="{{item.pic}}"></image>
+				</view>
+				<view style="margin-left:15px">{{item.name}}</view>
+				<view class="lp_price">
+					<text style="color:red;margin:15px 10px">￥{{item.minPrice}}</text>
+					<text style="color:grey;text-decoration:line-through;margin-right:15px">￥{{item.originalPrice}}</text>
+				</view>
+			</view>
+		</view>
+	</view>
+
+</view>

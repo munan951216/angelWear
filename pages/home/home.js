@@ -1,11 +1,11 @@
-// pages/home/home.js
+const {getGong} = require('../../http/lp_api')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+   content:[]
   },
 
   /**
@@ -14,12 +14,35 @@ Page({
   onLoad: function (options) {
 
   },
+  //跳到开张页面
+  toDetail(e){
+    let id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+       url:`/pages/toGongDetail/toGongDetail?id=${id}`
+    })
+  },
 
+  toLower(){
+    wx.navigateTo({
+      url: '/pages/lower/lower',
+    })
+  },
+
+  //礼品中心
+  toGift(){
+    wx.navigateTo({
+      url: '/pages/gifts/gifts',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    getGong().then((res)=>{
+      this.setData({
+        content:res.dataList
+      })
+    })
   },
 
   /**
@@ -33,7 +56,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+ 
   },
 
   /**
