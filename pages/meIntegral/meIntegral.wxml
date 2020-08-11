@@ -1,0 +1,20 @@
+<!-- 积分明细页面 -->
+<!-- 我的资产页面头部开始 -->
+<van-nav-bar
+  title="积分明细"
+  left-arrow
+  border="{{false}}"
+  bind:click-left="onClickLeft"
+/>
+<!-- 我的资产页面头部结束 -->
+<!-- 积分明细部分开始 -->
+<view class="jbn_meIntergal">
+  <text>可用积分</text>
+  <text>0</text>
+</view>
+<!-- 积分明细部分结束 -->
+<!-- 积分列表开始 -->
+<view class="jbn_meIntergalList">
+暂无积分明细</view>
+<!-- 积分列表结束 -->
+

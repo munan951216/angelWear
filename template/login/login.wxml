@@ -1,0 +1,15 @@
+<template name="jbn_orgin">
+  <view class="jbn_orgin" wx:if="{{jbn_origin}}">
+    <view class="jbn_orginList">
+      <image src="/assets/img/head_03.jpg"></image>
+      <text>授权登录</text>
+      <view class="jbn_list">
+        <text>请授权小程序登录</text>
+        <text>我们不会公布您的这些信息</text>
+        <text>只是为了给您提供更好的服务</text>
+      </view>
+      <button class="jbn_login" bindgetuserinfo="processLogin" open-type="getUserInfo">允许</button>
+      <button class="jbn_disLogin" catchtap="cancelLogin">暂不登录</button>
+    </view>
+  </view>
+</template>

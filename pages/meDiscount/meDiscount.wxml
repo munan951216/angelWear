@@ -1,0 +1,21 @@
+<van-nav-bar title="优惠买单" left-arrow bind:click-left="onClickLeft" />
+<!-- 消费金额部分开始 -->
+<van-cell-group>
+  <van-field value="{{ value }}" type="text" label="消费金额" placeholder="请询问服务员后输入" border="{{ false }}" custom-style="font-size:31rpx" />
+</van-cell-group>
+<!-- 消费金额部分结束 -->
+<!-- 优惠部分开始 -->
+<view class="jbn_meDiscountList">
+  <view wx:for="{{discountList}}" wx:key="{{ index }}">
+    <text>
+    {{ item.mj}}
+    </text>
+    <text>
+    {{ item.dis}}
+    </text>
+  </view>
+</view>
+<!-- 优惠部分结束 -->
+<!-- 确认支付开始 -->
+<van-button type="primary" block>确认支付</van-button>
+<!-- 确认支付结束 -->

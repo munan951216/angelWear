@@ -1,9 +1,18 @@
 {
   "pages": [
-    "pages/home/home",
     "pages/me/me",
+    "pages/cart/cart",
+    "pages/home/home",
     "pages/cate/cate",
-    "pages/cart/cart"
+    "pages/meAssets/meAssets",
+    "pages/meIntegral/meIntegral",
+    "pages/meGrow/meGrow",
+    "pages/order/order",
+    "pages/meDiscount/meDiscount",
+    "pages/meInvioce/meInvioce",
+    "pages/meInv/meInv",
+    "pages/meAddress/meAddress",
+    "pages/search/search"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -40,7 +49,6 @@
       }
     ]
   },
-  "style": "v2",
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
     "van-button": "@vant/weapp/button/index"
