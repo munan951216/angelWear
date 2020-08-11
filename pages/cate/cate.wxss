@@ -1,1 +1,114 @@
-/* pages/cate/cate.wxss */
+.lcj_cateseach{
+  width: 100%;
+  position: relative;
+}
+.lcj_seach{
+  width: 710rpx;
+  height: 64rpx;
+  border:2rpx solid #ccc ;
+  border-radius: 50rpx;
+  margin: 0 auto;
+ 
+}
+.lcj_seach input{
+  width: 600rpx;
+  height: 64rpx;
+  margin-left: 20rpx;
+}
+.lcj_icon_seach{
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  right: 40rpx;
+  top: 15rpx;
+}
+.lcj_catelist{
+  width: 178rpx;
+ 
+}
+.lcj_catelist{
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  top: 90rpx;
+}
+.lcj_left{
+  position: absolute;
+  overflow: auto;
+  left: 0;
+  bottom:0;
+  top: 50rpx;
+}
+.lcj_right{
+  width: 550rpx;
+  position: absolute;
+  left: 175rpx;
+  top: 0;
+
+  bottom: 0;
+  overflow: auto;
+  /* background: red; */
+}
+.lcj_rightzwsj{
+  text-align:center;
+  font-size: 35rpx;
+  color:#ccc;
+  margin-top: 20rpx;
+}
+.lcj_rightlist{
+  width: 530rpx;
+  height: 170rpx;
+  margin: 20rpx;
+  display: flex;
+}
+.lcj_rightlist image{
+  width: 200rpx;
+  height: 170rpx;
+  border-radius: 10rpx;
+}
+.lcj_rightlist .lcj_cartimg{
+  width: 54rpx;
+  height: 50rpx;
+}
+.lcj_cartexx{
+  width: 330rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+
+}
+.van-sidebar-item{
+  text-align: center;
+}
+.lcj_cartop{
+  width: 330rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.lcj_bt{
+  font-size: 30rpx;
+  overflow: hidden;
+ white-space: nowrap;
+  text-overflow: ellipsis;
+  font-weight: bolder;
+
+}
+.lcj_carbuttom{
+  width: 330rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.lcj_cartopjg{
+  font-size: 30rpx;
+  color:#d92e40;
+  font-weight: bolder;
+}
+.lcj_cateys{
+  font-size: 25rpx;
+  border: 2rpx solid #af2e40;
+  color: #ad5549;
+  padding: 6rpx;
+ border-radius: 10rpx;
+}
