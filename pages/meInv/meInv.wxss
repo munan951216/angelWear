@@ -1,0 +1,10 @@
+.jbn_meInv{
+  width:100%;
+  padding:30rpx;
+  box-sizing: border-box;
+}
+.jbn_meInv{
+  color:#ccc;
+  width:100%;
+  text-align:center;
+}

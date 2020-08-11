@@ -4,14 +4,24 @@
 		"ignore": []
 	},
 	"setting": {
+<<<<<<< HEAD
 		"urlCheck": true,
 		"scopeDataCheck": false,
 		"coverView": true,
+=======
+		"urlCheck": false,
+>>>>>>> dev
 		"es6": true,
 		"postcss": true,
 		"compileHotReLoad": false,
 		"preloadBackgroundData": false,
 		"minified": true,
+<<<<<<< HEAD
+=======
+		"newFeature": true,
+		"coverView": true,
+		"nodeModules": true,
+>>>>>>> dev
 		"autoAudits": false,
 		"newFeature": true,
 		"uglifyFileName": false,

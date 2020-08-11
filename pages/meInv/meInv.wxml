@@ -1,0 +1,10 @@
+<van-nav-bar
+  title="发票申请记录"
+  left-arrow
+  border="{{false}}"
+  bind:click-left="onClickLeft"
+/>
+<!-- 发票申请记录 -->
+<view class="jbn_meInv">
+  <text>———————暂无数据———————</text>
+</view>

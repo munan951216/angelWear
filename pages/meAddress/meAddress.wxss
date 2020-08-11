@@ -1,0 +1,5 @@
+/* pages/meAddress/meAddress.wxss */
+.jbn_meAddAddress{
+  position: absolute;
+  bottom: 0rpx;
+}
