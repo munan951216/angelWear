@@ -14,6 +14,8 @@ Page({
 
     // 转换html标签
     article: '',
+     // 弹出层
+     show: false,
   },
 
   onLoad: function (options) {
@@ -43,8 +45,23 @@ Page({
     var that = this;
     WxParse.wxParse('article', 'html', this.data.article, that, 5);
   },
-
-
+//添加购物车弹出层显示
+lcj_cateJrgwc() {
+  console.log(1111)
+  this.data.show = true
+  this.setData({
+    show:this.data.show
+  })
+  console.log(this.data.show)
+},
+//关闭弹出层
+onClose() {
+  this.setData({ show: false });
+},
+// 步进器   购物车添加数量
+onChange(event) {
+  console.log(event.detail);
+},
   /**
    * 生命周期函数--监听页面加载
    */

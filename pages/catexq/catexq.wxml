@@ -1,6 +1,6 @@
 <view>
 	<!-- 轮播图 -->
-	<view>
+	<view >
 		<swiper indicator-dots autoplay interval="2000" circular>
 			<block wx:for="{{swiper}}" wx:key="*this">
 				<swiper-item>
@@ -37,7 +37,7 @@
 	</view>
 
 	<!-- 商品拼团设置 -->
-	<view>
+	<!-- <view>
 		<view class="lcj_catePt">
 			<text>商品拼团设置</text>
 		</view>
@@ -66,7 +66,7 @@
 
 			<text class="lcj_cateSl">></text>
 		</view>
-	</view>
+	</view> -->
 
 	<view>
 		<view class="lcj_cateJs">
@@ -83,11 +83,36 @@
 			<image class="lcj_tb" src="/assets/icon/shopg.png"></image>
 			<image class="lcj_tb" src="/assets/icon/sc.png"></image>
 		</view>
-		<view class="lcj_cateJgwc">
+		<view class="lcj_cateJgwc" catchtap="lcj_cateJrgwc">
 			加入购物车
 		</view>
-		<view class="lcj_cateLjgm">
+		<view class="lcj_cateLjgm" catchtap="lcj_cateJrgwc">
 			立即购买
 		</view>
 	</view>
+
+
+	<!-- 点击购物车弹出层 -->
+	<van-popup show="{{ show }}" closeable position="bottom" custom-style="height: 35%" bind:close="onClose">
+		<view class="lcj_cateXqJg">
+			<image class="lcj_cateXqsj" src="{{ catexqlist.pic}}">
+
+			</image>
+			<view class="lcj_cateXqB">
+				<text class="lcj_catename">{{ catexqlist.characteristic }}</text>
+
+				<view>
+					<text class="lcj_catexqXj">￥{{ catexqlist.minPrice }}</text>
+					<text class="lcj_catexqYj">￥{{ catexqlist.originalPrice }}</text>
+				</view>
+			</view>
+		</view>
+		<view class="lcj_cateXqSl">
+			<text class="lcj_cateXqGm">购买数量</text>
+			<van-stepper value="{{ 1 }}" bind:change="onChange" />
+		</view>
+		<view class="lcj_cateJran">加入购物车</view>
+
+	</van-popup>
+
 </view>
