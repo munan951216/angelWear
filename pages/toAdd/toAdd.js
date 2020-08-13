@@ -1,4 +1,4 @@
-// pages/meAddress/meAddress.js
+// pages/toAdd/toAdd.js
 Page({
 
   /**
@@ -11,12 +11,6 @@ Page({
   onClickLeft() {
     wx.navigateBack({
       delta: 1
-    })
-  },
-  // 跳转到新增收货地址页面
-  toAdd(){
-    wx.navigateTo({
-      url: '/pages/toAdd/toAdd',
     })
   },
   /**

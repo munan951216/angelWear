@@ -1,8 +1,9 @@
 <!-- 引入授权登录模板 -->
 <import src="/template/login/login" />
+
 <view>
 	<!-- 轮播图 -->
-	<view>
+	<view class="banner">
 		<swiper indicator-dots autoplay interval="2000" circular>
 			<block wx:for="{{swiper}}" wx:key="*this">
 				<swiper-item>
@@ -13,12 +14,12 @@
 	</view>
 	<!-- 商品信息 -->
 	<view class="lcj_cateXqxx">
-	
-			<text class="lcj_catexqBt">{{ catexqlist.characteristic }}</text>
-			<view class="lcj_catexqFx">
-				<text >分享有赏，好友下单后可得5元现金奖励</text>
-			</view>
-	
+
+		<text class="lcj_catexqBt">{{ catexqlist.characteristic }}</text>
+		<view class="lcj_catexqFx">
+			<text >分享有赏，好友下单后可得5元现金奖励</text>
+		</view>
+
 
 		<!-- 商品详情 -->
 		<view class="lcj_cateJg">
@@ -101,6 +102,7 @@
 	</view>
 
 
+
 	<!-- 点击购物车弹出层 -->
 	<van-popup show="{{ show }}" closeable position="bottom" custom-style="height: 35%" bind:close="onClose">
 		<view class="lcj_cateXqJg">
@@ -125,3 +127,4 @@
 	</van-popup>
 
 </view>
+

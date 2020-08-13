@@ -1,10 +1,9 @@
 {
   "pages": [
     "pages/me/me",
-    "pages/cate/cate",
-    
-     "pages/cart/cart",
+    "pages/cart/cart",
     "pages/home/home",
+    "pages/cate/cate",
     "pages/meAssets/meAssets",
     "pages/meIntegral/meIntegral",
     "pages/meGrow/meGrow",
@@ -14,10 +13,15 @@
     "pages/meInv/meInv",
     "pages/meAddress/meAddress",
     "pages/search/search",
+
     "pages/toGongDetail/toGongDetail",
-    "pages/catexq/catexq",
+
     "pages/lower/lower",
-    "pages/gifts/gifts"
+    "pages/gifts/gifts",
+
+    "pages/catexq/catexq",
+    "pages/toAdd/toAdd"
+
   ],
   "window": {
     "backgroundTextStyle": "light",

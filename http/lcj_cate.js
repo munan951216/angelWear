@@ -14,5 +14,4 @@ module.exports = {
   lcjCatexq: (id) => request('shop/goods/detail', 'GET', {
     id
   }, true),
-
 }

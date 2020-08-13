@@ -1,4 +1,4 @@
-const {getGoodList} = require('../../http/lp_api')
+const {getCartList,} = require('../../http/lp_api')
 Page({
 
   /**
@@ -19,11 +19,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    getGoodList().then((res)=>{
+    let token = wx.getStorageSync('token')
+    getCartList(token).then((res)=>{
       console.log(res)
-      this.setData({
-        cartItem:res.slice(0,3)
-      })
     })
   },
 

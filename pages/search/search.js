@@ -8,9 +8,20 @@ Page({
     searchNav:[
       "综合","新品","销量","价格"
     ],
-    active:0
+    activeIndex:0
   },
-
+  // 返回上一个页面
+  onClickLeft() {
+    wx.navigateBack({
+      delta: 1
+    })
+  },
+  // 改变下标
+  changeActive(e){
+    this.setData({
+      activeIndex: e.currentTarget.dataset.index
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

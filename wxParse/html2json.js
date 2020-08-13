@@ -110,7 +110,9 @@ function html2json(html, bindName) {
                     var value = attr.value;
                     if (name == 'class') {
 
-                        console.dir(value);
+
+                        // console.dir(value);
+
                         //  value = value.join("")
                         node.classStr = value;
                     }
@@ -118,7 +120,9 @@ function html2json(html, bindName) {
                     // make it array of attribute
                     if (name == 'style') {
 
-                        console.dir(value);
+
+                        // console.dir(value);
+
                         //  value = value.join("")
                         node.styleStr = value;
                     }

@@ -1,4 +1,3 @@
-/* pages/catexq/catexq.wxss */
 swiper-item .lcj_catexqBanner{
   width: 100%;
   height: 720rpx;
@@ -9,6 +8,12 @@ swiper-item .lcj_catexqBanner{
   /* padding: 10rpx; */
 }
 
+.banner{
+  height:300px;
+}
+.banner swiper{
+  height:100%;
+}
 
 .lcj_catexqBt{
   width: 100%;
@@ -137,6 +142,7 @@ justify-content: space-around;
 }
 
 
+
 /* 加入购物车弹出层 */
 .lcj_cateXqJg{
   width: 100%;
@@ -178,6 +184,8 @@ justify-content: space-around;
   background: #e64340;color:#fff;
   font-size: 30rpx;
 }
+
+
 
 
 
