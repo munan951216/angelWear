@@ -1,3 +1,4 @@
+
 // pages/me/me.js
 const WXAPI = require('apifm-wxapi');
 const index = require('../../utils/index.js')
@@ -27,6 +28,7 @@ Page({
       txt: "售后",
       icon: "after-sale"
     },
+
     ],
     jbn_origin: false,
     hidden: true,
@@ -93,7 +95,6 @@ Page({
       jbn_origin: false
     })
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -110,21 +111,6 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    this.setUseRInfo()
-    index.checkHasLogined().then(isLogin => {
-      if (isLogin) {
-        wx.showToast({
-          title: "登录成功",
-        })
-        this.setData({
-          jbn_origin: !isLogin,
-          hidden: !isLogin
-        })
-      }
-    })
-  },
-
   /**
    * 生命周期函数--监听页面隐藏
    */

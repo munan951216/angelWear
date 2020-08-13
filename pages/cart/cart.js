@@ -1,4 +1,4 @@
-const {getCartList,} = require('../../http/lp_api')
+const {getCartList,removeCart,updateCount} = require('../../http/lp_api')
 Page({
 
   /**
@@ -22,6 +22,10 @@ Page({
     let token = wx.getStorageSync('token')
     getCartList(token).then((res)=>{
       console.log(res)
+      this.setData({
+        cartItem:res.items
+      })
+      
     })
   },
 
@@ -31,7 +35,49 @@ Page({
   onShow: function () {
 
   },
+  //删除购物车数据
+  delete(e){
+    console.log(e)
+    let key= e.currentTarget.dataset.item.key;
+    let index = e.currentTarget.dataset.item.index;
+    this.data.cartItem.splice(index,1)
+    this.setData({
+      cartItem:this.data.cartItem
+    })
+    let token = wx.getStorageSync('token')
+    removeCart(key,token).then((res)=>{
+        this.setData({
+          cartItem:res
+        })
+    })
+  },
 
+  //增加购物车的物品的数量
+  addCount(e){
+    let token = wx.getStorageSync('token')
+    let key = e.currentTarget.dataset.item.key;
+    let number =  e.currentTarget.dataset.item.number+1
+    updateCount({
+      key,number,token
+    }).then((res)=>{
+       this.setData({
+         cartItem:res.items
+       })
+    })
+  },
+
+  //减少购物车的数据
+  lowerCount(e){
+    console.log("555",e)
+    let token = wx.getStorageSync('token')
+    let key = e.currentTarget.dataset.item.key;
+    let number =  e.currentTarget.dataset.item.number-1;
+    updateCount({key,number,token}).then((res)=>{
+      this.setData({
+        cartItem:res.items
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

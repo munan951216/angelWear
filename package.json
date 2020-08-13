@@ -17,8 +17,14 @@
   },
   "homepage": "https://github.com/munan951216/angelWear#readme",
   "dependencies": {
+<<<<<<< HEAD
+    "@vant/weapp": "^1.4.3"
+  }
+=======
+
     "@vant/weapp": "^1.4.3"
   },
   "devDependencies": {},
   "description": ""
+>>>>>>> gengxin
 }

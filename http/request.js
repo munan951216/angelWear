@@ -2,28 +2,14 @@ const {
   baseUrl
 } = require('./env.js').prod
 //封装ajax
-
-
-
 const vipUrl = 'jbn1995'
-
-
 module.exports = {
-
-
   request: function (url, method = "GET", data = {}, isSubDomain = true) {
-
-
     let fullUrl = `${baseUrl}/${isSubDomain  ?  vipUrl  :  ''}/${url}`;
-
-
     wx.showLoading({
       title: '玩命加载中',
     })
-
     return new Promise((resolve, reject) => {
-
-
       wx.request({
         url: fullUrl,
         method,
@@ -32,8 +18,8 @@ module.exports = {
           'Content-type': 'application/x-www-form-urlencoded'
         },
         success(res) {
+          console.log('res::', res)
           if (res.statusCode === 200) {
-            console.log(res)
             resolve(res.data.data)
             wx.hideLoading()
           } else {

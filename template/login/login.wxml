@@ -2,7 +2,7 @@
   <view class="jbn_orgin" wx:if="{{jbn_origin}}">
     <view class="jbn_orginList">
       <image src="/assets/img/head_03.jpg"></image>
-      <text>授权登录</text>
+      <text>授权登录{{ jbn_origin}}</text>
       <view class="jbn_list">
         <text>请授权小程序登录</text>
         <text>我们不会公布您的这些信息</text>
@@ -12,4 +12,5 @@
       <button class="jbn_disLogin" catchtap="cancelLogin">暂不登录</button>
     </view>
   </view>
+
 </template>

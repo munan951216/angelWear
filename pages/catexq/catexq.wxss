@@ -6,29 +6,33 @@ swiper-item .lcj_catexqBanner{
 .lcj_cateXqxx{
   width: 100%;
   height: 220rpx;
-  
+  /* padding: 10rpx; */
 }
+
 .banner{
   height:300px;
 }
 .banner swiper{
   height:100%;
 }
+
 .lcj_catexqBt{
   width: 100%;
   font-size: 35rpx;
   font-weight: bolder;
+  margin-left: 15rpx;
 }
 .lcj_catexqFx{
   font-size: 30rpx;
   color: #d94444;
   font-weight: bolder;
-  margin: 20rpx 0;
+  margin: 20rpx 15rpx;
 }
 .lcj_cateJg{
 width: 100%;
 display: flex;
 justify-content: space-between;
+
 }
 .lcj_fh{
   font-size: 24rpx;
@@ -136,5 +140,47 @@ justify-content: space-around;
   text-align: center;
   color:#fff;
   background: #e64340;
+}
+
+/* 加入购物车弹出层 */
+.lcj_cateXqJg{
+  width: 100%;
+  display: flex;
+  margin: 30rpx;
+}
+.lcj_cateXqsj{
+  width: 150rpx;
+  height: 150rpx;
+}
+.lcj_catename{
+  font-size: 30rpx;
+  font-weight: bolder;
+ 
+}
+.lcj_cateXqB{
+  margin-left: 30rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.lcj_cateXqSl{
+  width: 100%;
+  display: flex;
+  justify-content:space-between;
+  box-sizing: border-box;
+  padding: 20rpx;
+}
+
+
+.lcj_cateXqGm{
+  font-size: 30rpx;
+}
+.lcj_cateJran{
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background: #e64340;color:#fff;
+  font-size: 30rpx;
 }
 

@@ -13,9 +13,13 @@
     "pages/meInv/meInv",
     "pages/meAddress/meAddress",
     "pages/search/search",
-    "pages/catexq/catexq",
-    "pages/toAdd/toAdd"
+    "pages/toAdd/toAdd",
 
+
+    "pages/toGongDetail/toGongDetail",
+    "pages/catexq/catexq",
+    "pages/lower/lower",
+    "pages/gifts/gifts"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -52,6 +56,7 @@
       }
     ]
   },
+  "style": "v2",
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
     "van-button": "@vant/weapp/button/index"
