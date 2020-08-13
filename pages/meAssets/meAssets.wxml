@@ -22,7 +22,7 @@
       <text>0.00</text>
     </view>
   </view>
-  <view class="jbn_meTi">
+  <view class="jbn_meTi" catchtap="toWidth">
     <text>提现</text>
   </view>
 </view>

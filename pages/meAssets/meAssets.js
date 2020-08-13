@@ -6,6 +6,12 @@ Page({
    */
   data: {
   },
+  // 跳转到提现页面
+  toWidth() {
+    wx.navigateTo({
+      url: '/pages/meWidth/meWidth',
+    })
+  },
   // 返回上一个页面
   onClickLeft(){
     wx.navigateBack({

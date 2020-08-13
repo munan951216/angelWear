@@ -30,12 +30,9 @@ Page({
         // 获取轮播数据
         swiper: res.pics,
         article: res.content,
-       
       })
-   
       that.change()
     })
-
   },
 //商品介绍   富文本解析
   change() {

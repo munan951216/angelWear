@@ -6,7 +6,6 @@ swiper-item .lcj_catexqBanner{
 .lcj_cateXqxx{
   width: 100%;
   height: 220rpx;
-  
 }
 .banner{
   height:300px;

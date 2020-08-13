@@ -5,7 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    address:"",
+    name:"",
+    mobile:"",
+    info:""
   },
   // 返回上一个页面
   onClickLeft() {

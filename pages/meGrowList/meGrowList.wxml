@@ -1,0 +1,21 @@
+<van-nav-bar title="积分券兑换成长值" left-arrow bind:click-left="onClickLeft" />
+<view class="jbn_meScore">
+  <view class="jbn_ScoreCount">
+    <text>当前积分</text>
+    <text>0</text>
+  </view>
+   <van-field
+    value="{{value}}"
+    type="text"
+    label="兑换积分"
+    placeholder="你希望用多少积分来兑换成长值"
+  />
+  <van-button type="danger" block>立即兑换</van-button>
+  <view class="jbn_roule">
+    <text>兑换规则：</text>
+    <view>
+      <text>获得1成长值</text>
+      <text>每满3积分即可兑换</text>
+    </view>
+  </view>
+</view>

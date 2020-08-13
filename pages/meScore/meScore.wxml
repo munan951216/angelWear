@@ -1,0 +1,10 @@
+<van-nav-bar title="积分券兑换积分" left-arrow bind:click-left="onClickLeft" />
+<view class="jbn_score">
+ <van-field
+    value="{{value}}"
+    type="text"
+    label="券号"
+    placeholder="请输入券号"
+  />
+  <van-button type="danger" block>立即兑换</van-button>
+</view>

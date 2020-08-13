@@ -2,25 +2,64 @@
 <van-nav-bar title="商品列表" left-arrow bind:click-left="onClickLeft" border="{{false}}" />
 <!-- 搜索框开始 -->
 <view class="jbn_search">
-  <van-search
-  class="jbn_searchKey"
-  value="{{ value }}"
-  shape="round"
-  background="#fff"
-  placeholder="输入搜索关键词"
-/>
-<van-icon name="qr" size="40rpx"/>
+  <van-search class="jbn_searchKey" value="{{ value }}" shape="round" background="#fff" placeholder="输入搜索关键词" bind:change="jbnSearch" />
+  <!-- <input placeholder="输入搜索关键词" data-value="{{ value }}" bindconfirm="jbnSearch"></input> -->
+  <van-icon name="qr" size="40rpx" wx:if="{{jbn_search}}" catchtap="change" />
+  <van-icon name="apps-o" size="40rpx" wx:else="{{jbn_show}}" catchtap="change1" />
 </view>
 <!-- 搜索框结束 -->
 <!-- 导航栏开始 -->
 <view class="jbn_searchNav">
-  <text wx:for="{{ searchNav }}" class="{{index==activeIndex ? 'active':'' }}" catchtap="changeActive" data-index="{{ index }}">
+  <text wx:for="{{ searchNav }}" class="{{index==activeIndex ? 'active':'' }}" catchtap="changeActive" data-index="{{ index }}" >
     {{item}}
   </text>
+  <!-- <view data-num="1" class="{{num==1?'active':''}}" catchtap="jbnZong">综合</view>
+  <view data-num="2" class="{{num==2?'active':''}}" catchtap="jbnNew">新品</view>
+  <view data-num="3" class="{{num==3?'active':''}}" catchtap="jbnSale">销量</view>
+  <view data-num="4" class="{{num==4?'active':''}}" catchtap="jbnPrice">价格</view> -->
 </view>
 <!-- 导航栏结束 -->
 <!-- 商品列表样式1开始 -->
-<view class="jbn_searchList">
-
+<view class="jbn_searchList" wx:if="{{jbn_search}}">
+  <view class="jbn_goodsList" wx:for="{{jbnSearchList}}" catchtap="toCatexq" data-id="{{item.id}}">
+    <view class="jbn_left">
+      <image src="{{ item.pic}}"></image>
+    </view>
+    <view class="jbn_right">
+      <view>
+        {{item.name}}
+      </view>
+      <view>
+        ￥{{item.minPrice}}
+      </view>
+      <view>
+        <view>已售出{{item.gotScore}}件</view>
+        <van-icon name="shopping-cart-o" size="40rpx" catchtap="addCart" data-id="{{item.id}}"/>
+      </view>
+    </view>
+  </view>
 </view>
 <!-- 商品列表样式1结束 -->
+<!-- 商品列表样式2开始 -->
+<view class="jbn_shopList" wx:else="{{jbn_show}}">
+  <view class="jbn_list">
+    <view class="jbn_goods" wx:for="{{jbnSearchList}}">
+      <view class="jbn_img">
+        <image src="{{ item.pic}}"></image>
+      </view>
+      <view class="jbn_info">
+        <view>
+          {{item.name}}
+        </view>
+        <view>
+          ￥{{item.minPrice}}
+        </view>
+        <view class="jbn_addCart">
+          <view>{{ item.minBuyNumber}}人已购{{item.maxCoupons}}件</view>
+          <van-icon name="shopping-cart-o" size="40rpx" color="red" catchtap="addCart" data-id="{{item.id}}"/>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 商品列表样式2结束 -->

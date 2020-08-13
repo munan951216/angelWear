@@ -1,4 +1,5 @@
 // pages/search/search.js
+const { jjbnSearch,jbnAddCart }=require("../../http/jbn_search.js")
 Page({
 
   /**
@@ -8,7 +9,11 @@ Page({
     searchNav:[
       "综合","新品","销量","价格"
     ],
-    activeIndex:0
+    activeIndex:0,
+    jbn_search:true,
+    jbn_show:false,
+    jbnSearchList:[],
+    num:1
   },
   // 返回上一个页面
   onClickLeft() {
@@ -19,14 +24,68 @@ Page({
   // 改变下标
   changeActive(e){
     this.setData({
-      activeIndex: e.currentTarget.dataset.index
+        activeIndex: e.currentTarget.dataset.index
     })
+    if(this.data.activeIndex==3){
+      console.log(1)
+      let searchList=this.data.jbnSearchList.sort((a,b)=>{
+        return a.minPrice-b.minPrice
+      })
+      this.setData({
+        jbnSearchList:searchList
+      })
+    } else if (this.data.activeIndex == 0){
+
+    }
+  },
+  jbnSearch(e){
+   let k = e.detail
+    jjbnSearch().then((res) => {
+      let data = res.filter((item) => {
+        return item.name.includes(k)
+      })
+      this.setData({
+        jbnSearchList: data
+      })
+      console.log(this.data.jbnSearchList)
+    })
+  },
+  // 改变页面布局
+  change(){
+    this.setData({
+      jbn_search:false,
+      jbn_show:true
+    })
+  },
+  change1(){
+    this.setData({
+      jbn_search:true,
+      jbn_show:false,
+      jbnSearchList:[]
+    })
+  },
+  // 点击商品进入商品详情页
+  toCatexq(e){
+    console.log(e)
+    let { id } = e.currentTarget.dataset
+    // console.log(id)
+    wx.navigateTo({
+      url:`/pages/catexq/catexq?id=${id}`,
+    })
+  },
+  // 点击购物车图标将商品加入购物车
+  addCart(e){
+    wx.showToast({
+      title: '加入成功',
+    })
+    let token=wx.getStorageSync("token")
+    let num=1
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
 
   /**

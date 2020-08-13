@@ -1,0 +1,16 @@
+<van-nav-bar
+  title="我要提现"
+  left-arrow
+  border="{{false}}"
+  bind:click-left="onClickLeft"
+/>
+<view class="jbn_meWidth">
+ <van-field
+    value="{{value}}"
+    type="text"
+    label="申请提现金"
+    placeholder="填写提现金额"
+  />
+  <van-button type="danger" block>申请提现</van-button>
+  <van-button block>取消</van-button>
+</view>

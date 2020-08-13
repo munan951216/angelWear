@@ -1,11 +1,11 @@
-// pages/meIntegral/meIntegral.js
+// pages/meScore/meScore.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    
+    value:""
   },
   // 返回上一个页面
   onClickLeft() {

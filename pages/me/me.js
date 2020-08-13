@@ -81,6 +81,31 @@ Page({
       url: '/pages/meAddress/meAddress',
     })
   },
+  // 跳转到我的收藏页面
+  toFav(){
+    wx.navigateTo({
+      url: '/pages/meFav/meFav',
+    })
+  },
+  // 跳转到每日签到页面
+  toQian(){
+    wx.navigateTo({
+      url: '/pages/meQian/meQian',
+    })
+  },
+  // 跳转到积分券兑换积分页面
+  toScore(){
+    wx.navigateTo({
+      url: '/pages/meScore/meScore',
+    })
+  },
+  // 跳转到积分券兑换成长值页面
+  toGrowList(){
+    wx.navigateTo({
+      url: '/pages/meGrowList/meGrowList',
+    })
+  },
+  
   // 点击立即登录，进行登录授权
   goLogin() {
     this.setData({
@@ -164,10 +189,9 @@ Page({
     wx.getUserInfo({
       success: (res) => {
         this.setData({
-          avatarUrl: JSON.parse(res.rawData).avatarUrl,
+          avatarUrl: JSON5.parse(res.rawData).avatarUrl,
           nickName: JSON.parse(res.rawData).nickName
         })
-
       }
     })
   },

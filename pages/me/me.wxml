@@ -101,7 +101,7 @@
 </view>
 <!-- 领券中心结束 -->
 <!-- 我的收藏部分开始 -->
-<view class="jbn_meOrder">
+<view class="jbn_meOrder" catchtap="toFav">
   <text>我的收藏</text>
   <van-icon name="arrow" />
 </view>
@@ -110,19 +110,19 @@
 <view class="jbn_meGe"></view>
 <!-- 分割线结束 -->
 <!-- 每日签到部分开始 -->
-<view class="jbn_meOrder">
+<view class="jbn_meOrder" catchtap="toQian">
   <text>每日签到</text>
   <van-icon name="arrow" />
 </view>
 <!-- 每日签到部分结束 -->
 <!-- 积分券兑换积分开始 -->
-<view class="jbn_meOrder">
+<view class="jbn_meOrder" catchtap="toScore">
   <text>积分券兑换积分</text>
   <van-icon name="arrow" />
 </view>
 <!-- 积分券兑换积分结束 -->
 <!-- 积分券兑换成长值开始 -->
-<view class="jbn_meOrder">
+<view class="jbn_meOrder" catchtap="toGrowList">
   <text>积分券兑换成长值</text>
   <van-icon name="arrow" />
 </view>
