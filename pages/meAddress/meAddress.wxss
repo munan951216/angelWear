@@ -1,0 +1,22 @@
+/* pages/meAddress/meAddress.wxss */
+.jbn_meAddAddress{
+  position: absolute;
+  bottom: 0rpx;
+  border-top:1rpx solid #f0f0f0;
+  padding:30rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between; 
+  width: 100%;
+}
+.jbn_meAddAddress view text:nth-child(1){
+  width: 40rpx;
+  height:40rpx;
+  display: inline-block;
+  border-radius:50%;
+  line-height: 40rpx;
+  text-align: center;
+  background:#e56d6c;
+  color:#fff;
+  margin-right:16rpx;
+}

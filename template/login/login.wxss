@@ -1,0 +1,55 @@
+.jbn_orgin{
+  width:100%;
+  height:1080rpx;
+  background: rgba(0,0,0,0.5);
+  position: absolute;
+  top:100rpx;
+  left:0;
+  z-index:1;
+  display: flex;
+}
+.jbn_orginList{
+  width:525rpx;
+  height: 600rpx;
+  background:#fff;
+  border-radius:20rpx;
+  margin:320rpx auto;
+  padding:50rpx 36rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+image{
+  width: 106rpx;
+  height: 106rpx;
+}
+.jbn_orginList>text{
+  font-size:30rpx;
+  color:#4f4f4f;
+}
+.jbn_list{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color:#bdbdbd;
+  font-size: 24rpx;
+  border-top:2rpx solid #f7f7f7;
+  height:172rpx;
+  padding:25rpx 0rpx;
+  box-sizing: border-box;
+  justify-content: space-between;
+  margin-top:8rpx;
+}
+.jbn_login{
+  width:420rpx;
+  background:#00b900;
+  color:#fff;
+}
+.jbn_disLogin{
+  width:420rpx;
+  background:#cccccc;
+  color:#fff;
+  margin-top:10rpx;
+}

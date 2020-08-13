@@ -1,4 +1,9 @@
 // pages/catexq/catexq.js
+
+const {
+  lcjCatexq
+} = require("../../http/lcj_cate.js")
+
 Page({
 
   /**
@@ -16,6 +21,50 @@ Page({
   },
 
   /**
+=======
+    catexqlist: {},
+    swiper: [],
+    id: "",
+
+    // 转换html标签
+    article: '',
+  },
+
+  onLoad: function (options) {
+    var that = this;
+    console.log()
+    lcjCatexq(options.id).then(res => {
+      console.log(res)
+      this.catexqlist = res.category
+      this.catexqlist = res.basicInfo
+
+      this.setData({
+        //获取总的详情数据
+        catexqlist: this.catexqlist,
+        // 获取轮播数据
+        swiper: res.pics,
+        article: res.content,
+       
+      })
+   
+      that.change()
+    })
+
+  },
+//商品介绍   富文本解析
+  change() {
+    var WxParse = require('../../wxParse/wxParse.js');
+    var that = this;
+    WxParse.wxParse('article', 'html', this.data.article, that, 5);
+  },
+
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  
+  /**
+>>>>>>> master
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
@@ -26,6 +75,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+
+    // lcjCatexq().then((res)=>{
+    //   console.log("111",res)
+    // })
 
   },
 

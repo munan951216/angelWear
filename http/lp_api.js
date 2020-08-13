@@ -56,7 +56,9 @@ module.exports={
   //获取礼品卷的内容
   getGifts:()=>{
     return request('discounts/details','GET',{},true)
-  }
+  },
   
+  //读取购物车数据
+  getCartList:(token)=>request('shopping-cart/info','GET',{token},true)
 
 }
