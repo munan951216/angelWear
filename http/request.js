@@ -34,7 +34,7 @@ module.exports = {
         success(res) {
           if (res.statusCode === 200) {
             console.log(res)
-            resolve(res.data)
+            resolve(res.data.data)
             wx.hideLoading()
           } else {
             wx.showToast({
