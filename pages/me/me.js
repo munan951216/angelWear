@@ -1,4 +1,6 @@
+
 // pages/me/me.js
+let index = require('../../utils/index')
 Page({
 
   /**
@@ -95,13 +97,14 @@ Page({
   // 点击允许，进行登录
   processLogin(e) {
     console.log(e)
-    if (!e.detail.userInfo) {
-      wx.showToast({
-        title: '已取消',
-        icon: "none"
-      })
-      return
-    }
+    // if (!e.detail.userInfo) {
+    //   wx.showToast({
+    //     title: '已取消',
+    //     icon: "none"
+    //   })
+    //   return
+    // }
+     index.register(this)
   },
   /**
    * 生命周期函数--监听页面加载
@@ -121,10 +124,24 @@ Page({
    * 生命周期函数--监听页面显示
    */
 
-  onShow: function() {
-
+  onShow: function(e=true) {
+    
+    let user = wx.getStorageSync('user')
+    this.setData({
+      jbn_origin:e,
+      hidden: true,
+     })
+    if(user){
+      this.setData({
+       avatarUrl:user.userInfo.avatarUrl,
+       nickName:user.userInfo.nickName,
+        hidden: false,
+      })
+    }
+   
+       
   },
-
+  
   /**
    * 生命周期函数--监听页面隐藏
    */

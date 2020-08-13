@@ -1,6 +1,8 @@
+<!-- 引入授权登录模板 -->
+<import src="/template/login/login" />
 <view>
 	<!-- 轮播图 -->
-	<view >
+	<view>
 		<swiper indicator-dots autoplay interval="2000" circular>
 			<block wx:for="{{swiper}}" wx:key="*this">
 				<swiper-item>
@@ -11,12 +13,14 @@
 	</view>
 	<!-- 商品信息 -->
 	<view class="lcj_cateXqxx">
+	
+			<text class="lcj_catexqBt">{{ catexqlist.characteristic }}</text>
+			<view class="lcj_catexqFx">
+				<text >分享有赏，好友下单后可得5元现金奖励</text>
+			</view>
+	
 
-		<text class="lcj_catexqBt">{{ catexqlist.characteristic }}</text>
-		<view class="lcj_catexqFx">
-			<text >分享有赏，好友下单后可得5元现金奖励</text>
-		</view>
-<!-- 商品详情 -->
+		<!-- 商品详情 -->
 		<view class="lcj_cateJg">
 			<view class="lcj_catez">
 
@@ -67,7 +71,7 @@
 			<text class="lcj_cateSl">></text>
 		</view>
 	</view> -->
-<!-- 商品介绍 -->
+	<!-- 商品介绍 -->
 	<view>
 		<view class="lcj_cateJs">
 			<text>商品介绍</text>
@@ -79,9 +83,14 @@
 	</view>
 	<view class="lcj_cateDdl">
 		<view class="lcj_cateXqtb">
+			<!-- 客服 -->
 			<image class="lcj_tb" src="/assets/icon/kefu.gif"></image>
+			<!-- 加购 -->
 			<image class="lcj_tb" src="/assets/icon/shopg.png"></image>
-			<image class="lcj_tb" src="/assets/icon/sc.png"></image>
+			<!-- 收藏 -->
+			<image class="lcj_tb" wx:if="{{ isShow }}" src="/assets/icon/sc.png" catchtap="lcj_cateXqSc"></image>
+			<!-- 已收藏 -->
+			<image class="lcj_tb" wx:else src="/assets/icon/ysc.png" catchtap="lcj_cateXqSc"></image>
 		</view>
 		<view class="lcj_cateJgwc" catchtap="lcj_cateJrgwc">
 			加入购物车
@@ -111,7 +120,7 @@
 			<text class="lcj_cateXqGm">购买数量</text>
 			<van-stepper value="{{ 1 }}" bind:change="onChange" />
 		</view>
-		<view class="lcj_cateJran">加入购物车</view>
+		<view class="lcj_cateJran" catchtap="lcj_cateJrtz">加入购物车</view>
 
 	</van-popup>
 

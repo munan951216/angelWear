@@ -28,7 +28,7 @@ Page({
     })
     console.log(this.data.show)
   },
-
+// 获取左侧数据
   onLoad: function (options) {
     // this.list()
     // this.shoplist()
@@ -40,6 +40,7 @@ Page({
           catelist: this.catelist,
         })
     })
+    // 分类右侧
     lcjCateR().then((res)=>{
       this.shop = res
                 let {id}  =  this.catelist[0]
@@ -60,9 +61,9 @@ Page({
   onClose() {
     this.setData({ show: false });
   },
-
+// 点击左侧列表对应右侧商品
   lcj_cateLeft(e){
-      // console.log(e)
+      console.log(e)
       let {id} = e.currentTarget.dataset
       this.data.lcjcate = this.data.shop.filter((item)=>{
         return item.categoryId == id

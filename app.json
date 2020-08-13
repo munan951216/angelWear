@@ -1,11 +1,10 @@
 {
   "pages": [
-
-    "pages/cate/cate",
     "pages/me/me",
+    "pages/cate/cate",
+    
      "pages/cart/cart",
     "pages/home/home",
-   
     "pages/meAssets/meAssets",
     "pages/meIntegral/meIntegral",
     "pages/meGrow/meGrow",
@@ -14,8 +13,11 @@
     "pages/meInvioce/meInvioce",
     "pages/meInv/meInv",
     "pages/meAddress/meAddress",
-    "pages/search/search"
-    
+    "pages/search/search",
+    "pages/toGongDetail/toGongDetail",
+    "pages/catexq/catexq",
+    "pages/lower/lower",
+    "pages/gifts/gifts"
   ],
   "window": {
     "backgroundTextStyle": "light",

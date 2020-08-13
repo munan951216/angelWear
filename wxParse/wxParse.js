@@ -34,6 +34,7 @@ function wxParse(bindName = 'wxParseData', type='html', data='<div class="color:
   if (type == 'html') {
     transData = HtmlToJson.html2json(data, bindName);
     // console.log(JSON.stringify(transData, ' ', ' '));
+
   } else if (type == 'md' || type == 'markdown') {
     var converter = new showdown.Converter();
     var html = converter.makeHtml(data);

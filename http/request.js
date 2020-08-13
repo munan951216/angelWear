@@ -1,5 +1,8 @@
 const {
   baseUrl
+
+
+
 } = require('./env.js').prod
 //封装ajax
 
@@ -9,11 +12,12 @@ module.exports = {
 
   request: function (url, method = "GET", data = {}, isSubDomain = true) {
 
-    let fullUrl = `${baseUrl}/${isSubDomain ? vipUrl : ''}/${url}`;
+    let fullUrl = `${baseUrl}/${isSubDomain ? vipUrl : ''}/${url}`;
 
     wx.showLoading({
       title: '玩命加载中',
     })
+
 
 
     return new Promise((resolve, reject) => {
@@ -26,12 +30,12 @@ module.exports = {
           'Content-type': 'application/x-www-form-urlencoded'
         },
         success(res) {
-          
-           console.log('res::',res)
-          // && res.data.code === 0
-          if (res.statusCode === 200 ) {
-            resolve(res.data.data)
 
+
+          // console.log('res::',res)
+          if (res.statusCode === 200 && res.data.code === 0) {
+
+            resolve(res.data.data)
             wx.hideLoading()
           } else {
             wx.showToast({
@@ -44,10 +48,16 @@ module.exports = {
           wx.showToast({
             title: '数据接口有问题',
           })
-          reject('数据接口有问题')
+
+          reject('数据接口有问题',error)
+
         }
       })
+
+
     })
+
+
   }
 
 

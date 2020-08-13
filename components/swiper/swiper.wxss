@@ -1,0 +1,34 @@
+.swiper_container {
+  width: 100%;
+  height: 180px;
+}
+.swiper_item_container {
+  width: 100%;
+  height: 180px;
+}
+.swiper_item_container image{
+  width: 100%;
+  height: 180px;
+}
+.Qin_swiper_input {
+  position: absolute;
+  top: 20px;
+  left: 0px;
+  width: 100%;
+  height: 50px;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+.swiper_wrapper{
+  position: relative;
+}
+.Qin_swiper_input input {
+  width: 90%;
+  height: 35px;
+  border: 1px solid rgb(236, 220, 220);
+  background: rgb(255, 255, 255, 0.8);
+  border-radius: 25px;
+  text-indent: 9px;
+}
