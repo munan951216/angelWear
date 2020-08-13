@@ -37,7 +37,6 @@ Page({
       console.log(res)
       this.catexqlist = res.category
       this.catexqlist = res.basicInfo
-
       this.setData({
         //获取总的详情数据
         catexqlist: this.catexqlist,
