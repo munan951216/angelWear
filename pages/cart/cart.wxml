@@ -1,4 +1,4 @@
-<view style="position:relative">
+<view style="position:relative;width:100%;height:554px">
 
 
 	<!-- 购物车中没有商品 -->
