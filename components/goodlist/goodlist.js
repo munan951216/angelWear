@@ -29,9 +29,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    toCate(){
+    toCate(e){
+      console.log(e)
+     let id = e.currentTarget.dataset.id
       wx.reLaunch({
-        url:'/pages/cate/cate'
+        url:`/pages/cate/cate?id=${id}`
       })
     },
   }

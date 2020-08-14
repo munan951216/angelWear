@@ -53,7 +53,7 @@ Component({
     toGoodDetail(e){
          let id = e.currentTarget.dataset.id
          wx.navigateTo({
-           url: `/pages/catexq/catexq?id=${id}`,
+           url: `/pages/catexq/catexq?${id}`,
          })
     },
     toGOOd(e){

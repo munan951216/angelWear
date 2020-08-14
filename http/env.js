@@ -11,6 +11,5 @@ module.exports = {
   //测试环境
   test: {
     baseUrl: 'https://api.1909A.com'
-
   }
 }

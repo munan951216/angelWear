@@ -1,11 +1,7 @@
 const {baseUrl} = require('./env.js').prod
 //封装ajax
 const vipUrl = 'jbn1995'
-
-
 module.exports = {
-
-
   request: function (url, method = "GET", data = {}, isSubDomain = true) {
 
 
@@ -48,7 +44,6 @@ module.exports = {
           wx.showToast({
             title: '数据接口有问题',
           })
-
 
           reject('数据接口有问题')
         }

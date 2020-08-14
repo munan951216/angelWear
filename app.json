@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/search/search",
+
     "pages/me/me",
     "pages/cart/cart",
     "pages/cate/cate",
@@ -13,7 +13,11 @@
     "pages/meInvioce/meInvioce",
     "pages/meInv/meInv",
     "pages/meAddress/meAddress",
-   
+
+    "pages/search/search",
+    "pages/toAdd/toAdd",
+
+
 
     "pages/toGongDetail/toGongDetail",
 
@@ -21,7 +25,6 @@
     "pages/gifts/gifts",
 
     "pages/catexq/catexq",
-    "pages/toAdd/toAdd",
 
 
   

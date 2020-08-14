@@ -111,7 +111,6 @@ function html2json(html, bindName) {
                     if (name == 'class') {
 
 
-                        // console.dir(value);
 
                         //  value = value.join("")
                         node.classStr = value;
@@ -119,9 +118,6 @@ function html2json(html, bindName) {
                     // has multi attibutes
                     // make it array of attribute
                     if (name == 'style') {
-
-
-                        // console.dir(value);
 
                         //  value = value.join("")
                         node.styleStr = value;

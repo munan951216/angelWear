@@ -12,9 +12,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // 商品详情数据
-    catexqlist: {},
-    // 轮播
+
+catexqlist: {},
     swiper: [],
     id: "",
 
@@ -68,6 +67,11 @@ Page({
   },
 
 
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  
   // 点击允许，进行登录
   processLogin(e) {
     console.log(e)
@@ -143,12 +147,14 @@ Page({
 
 
   /**
-=======
+
   /**
    * 生命周期函数--监听页面加载
    */
   
   /**
+
+
 
 
    * 生命周期函数--监听页面初次渲染完成
@@ -161,8 +167,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
-
 
     // lcjCatexq().then((res)=>{
     //   console.log("111",res)

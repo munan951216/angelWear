@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "Swiper": "/components/swiper/swiper",
+    "Swiper":"/components/swiper/swiper",
     "Good":"/components/goodlist/goodlist",
     "Bargaining":"/components/Bargaining/Bargaining"
   },

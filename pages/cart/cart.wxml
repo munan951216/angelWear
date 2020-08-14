@@ -1,4 +1,4 @@
-<view>
+<view style="position:relative">
 
 
 	<!-- 购物车中没有商品 -->
@@ -12,22 +12,24 @@
 
 	<!-- 购物车中有商品 -->
 	<view wx:if="{{cartItem.length!==0}}">
-		<view class="cart_good_container" wx:for="{{cartItem}}">
-			<view class="cate_item_icon_image">
-				<image src="{{item.pic}}"></image>
-			</view>
+		<view wx:for="{{cartItem}}" wx:key="index" class="lp_good_wrapper">
+			<image src="{{item.pic}}" class="lp_cart_icon" />
 			<view class="cart_item_title">
 				<view>{{item.name}}</view>
-				<view style="color:red">￥{{item.minPrice}}</view>
+				<view style="color:red">￥{{item.price}}</view>
 			</view>
-			<view class="right_cart_container">
-				<image src="../../assets/icon/shanchu.png"></image>
-				<view style="display:inline-flex" class="count_computed">
-					<button>+</button>
-					{{item.minBuyNumber}}
-					<button>-</button>
+			<view class="right_cart_containe">
+				<view bindtap="delete" data-item="{{item}}">
+					<image src="../../assets/icon/shanchu.png"></image>
+				</view>
+
+				<view class="count_computed">
+					<button size="mini" bindtap="addCount" data-item="{{item}}">+</button>
+					{{item.number}}
+					<button size="mini" bindtap="lowerCount" data-item="{{item}}">-</button>
 				</view>
 			</view>
 		</view>
-	</view>
+		<view class="lp_total_footer"></view>
 </view>
+	</view>

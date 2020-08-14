@@ -32,8 +32,8 @@ Page({
   },
 
 
+// 获取左侧数据
 
-// 获取左侧列表数据
   onLoad: function (options) {
     // this.list()
     // this.shoplist()
@@ -45,19 +45,20 @@ Page({
         catelist: this.catelist,
       })
     })
-// 获取右侧商品数据
-    lcjCateR().then((res) => {
-      this.shop  =  res
-      let  { id }   =   this.catelist[0]
-      // console.log(id)
-      this.lcjcate  =  this.shop.filter((item) => {
-        return  item.categoryId  ==  id
-      })
-      // console.log( this.data.lbj_arr)
-      this.setData({
-        shop: this.shop,
-        lcjcate : this.lcjcate
-      })
+
+    // 分类右侧
+    lcjCateR().then((res)=>{
+      this.shop = res
+                let {id}  =  this.catelist[0]
+                // console.log(id)
+                this.lcjcate = this.shop.filter((item)=>{
+                  return item.categoryId == id
+                })
+                // console.log( this.data.lbj_arr)
+                this.setData({
+                  shop:this.shop,
+                  lcjcate :this.lcjcate 
+                })
 
     })
    
@@ -71,16 +72,17 @@ Page({
 
 
 // 点击左侧列表对应右侧商品
-  lcj_cateLeft(e) {
-    // console.log(e)
-    let  { id }  =  e.currentTarget.dataset
-    this.data.lcjcate  =  this.data.shop.filter((item) => {
-      return  item.categoryId  ==  id
-    })
-    this.setData({
-      lcjcate: this.data.lcjcate
-    })
-  },
+  lcj_cateLeft(e){
+      console.log(e)
+      let {id} = e.currentTarget.dataset
+      this.data.lcjcate = this.data.shop.filter((item)=>{
+        return item.categoryId == id
+      })
+      this.setData({
+          lcjcate:this.data.lcjcate
+      })
+    },
+
 
   //点击分类商品进入商品详情
   lcj_shoplist(e) {
@@ -92,12 +94,16 @@ Page({
       url: `/pages/catexq/catexq?id=${id}`,
     })
   },
+
 // 点击input框进入搜索页面
 lcj_cateSearch(){
   wx.navigateTo({
     url: '/pages/search/search',
   })
 },
+
+
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -157,7 +163,5 @@ lcj_cateSearch(){
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
-
   }
 })

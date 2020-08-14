@@ -59,6 +59,12 @@ module.exports={
   },
   
   //读取购物车数据
-  getCartList:(token)=>request('shopping-cart/info','GET',{token},true)
-
+  getCartList:(token)=>request('shopping-cart/info','GET',{token},true),
+ 
+  //删除购物车的数据
+  removeCart:(data)=>request('shopping-cart/remove','POST',data,true),
+   
+  //改变购物车的商品数量
+  updateCount:(data)=>request('shopping-cart/modifyNumber','POST',data,true)
+  
 }

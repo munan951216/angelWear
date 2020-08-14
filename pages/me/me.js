@@ -27,6 +27,9 @@ Page({
       txt: "售后",
       icon: "after-sale"
     },
+
+
+
     ],
     jbn_origin: false,
     hidden: true,
@@ -139,6 +142,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
+
   onShow: function () {
     this.setUseRInfo()
     index.checkHasLogined().then(isLogin => {
@@ -153,6 +157,7 @@ Page({
       }
     })
   },
+
 
 
   /**
@@ -203,7 +208,7 @@ Page({
     wx.getUserInfo({
       success: (res) => {
         this.setData({
-          avatarUrl: JSON5.parse(res.rawData).avatarUrl,
+          avatarUrl: JSON.parse(res.rawData).avatarUrl,
           nickName: JSON.parse(res.rawData).nickName
         })
       }

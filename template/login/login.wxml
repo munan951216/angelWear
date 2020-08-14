@@ -1,5 +1,4 @@
 <template name="jbn_orgin">
-
   <view class="jbn_orgin" wx:if="{{jbn_origin}}">
     <view class="jbn_orginList">
       <image src="/assets/img/head_03.jpg"></image>

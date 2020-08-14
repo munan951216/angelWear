@@ -1,3 +1,4 @@
+
 swiper-item .lcj_catexqBanner{
   width: 100%;
   height: 720rpx;
@@ -142,8 +143,6 @@ justify-content: space-around;
   background: #e64340;
 }
 
-
-
 /* 加入购物车弹出层 */
 .lcj_cateXqJg{
   width: 100%;
@@ -185,8 +184,6 @@ justify-content: space-around;
   background: #e64340;color:#fff;
   font-size: 30rpx;
 }
-
-
 
 
 
