@@ -1,9 +1,11 @@
 <!-- 展开 -->
 <view class="jbn_que">
   <view>
-    <image src="/assets/icon/right.png"></image>
+    <view>
+      <image src="/assets/icon/right.png"></image>
+    </view>
+    <view class="jbn_qu">快速导航开始</view>
   </view>
-  <view class="jbn_qu">快速导航</view>
   <view class="jbn_nav">
     <view>
       <image src="/assets/icon/home.png"></image>
