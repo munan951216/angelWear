@@ -7,7 +7,7 @@
 
   <!-- 轮博图展示 -->
 	<swiper class="swiper_container" autoplay indicator-dots indicator-active-color="white" circular>
-		<swiper-item wx:for="{{banner}}" class="swiper_item_container">
+		<swiper-item wx:for="{{banner}}" wx:key="index" class="swiper_item_container">
 			<image src="{{item.picUrl}}"/>
 		</swiper-item>
 	</swiper>

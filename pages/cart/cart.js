@@ -89,7 +89,7 @@ Page({
   toTotal(){
     let price = this.data.totalPrice
     wx.navigateTo({
-      url: `/pages/cart_detail/cart_detail?price=${price}`,
+      url:`/pages/cart_detail/cart_detail?price=${price}`,
     })
   },
   /**
