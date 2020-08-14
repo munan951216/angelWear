@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-     cartItem:[]
+     cartItem:[],
+     totalPrice:0
   },
 
   /**
@@ -23,11 +24,12 @@ Page({
     getCartList(token).then((res)=>{
       console.log(res)
       this.setData({
-        cartItem:res.items
+        cartItem:res.items,
+        totalPrice:res.price
       })
-      
     })
   },
+
 
   /**
    * 生命周期函数--监听页面显示
@@ -47,7 +49,8 @@ Page({
     let token = wx.getStorageSync('token')
     removeCart(key,token).then((res)=>{
         this.setData({
-          cartItem:res
+          cartItem:res,
+          totalPrice:res.price
         })
     })
   },
@@ -61,7 +64,8 @@ Page({
       key,number,token
     }).then((res)=>{
        this.setData({
-         cartItem:res.items
+         cartItem:res.items,
+         totalPrice:res.price
        })
     })
   },
@@ -74,8 +78,17 @@ Page({
     let number =  e.currentTarget.dataset.item.number-1;
     updateCount({key,number,token}).then((res)=>{
       this.setData({
-        cartItem:res.items
+        cartItem:res.items,
+        totalPrice:res.price
       })
+    })
+  },
+
+  //跳转到计算数据页面
+  toTotal(){
+    let price = this.data.totalPrice
+    wx.navigateTo({
+      url: `/pages/cart_detail/cart_detail?price=${price}`,
     })
   },
   /**

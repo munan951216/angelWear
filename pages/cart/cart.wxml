@@ -1,4 +1,4 @@
-<view style="position:relative">
+<view style="position:relative;width:100%;height:554px">
 
 
 	<!-- 购物车中没有商品 -->
@@ -31,10 +31,12 @@
 			</view>
 		</view>
 
-	
 
-		<vie class="lp_total_footer">
-	
-		</view>
-	</view>
+
+		<view class="lp_total_footer">
+			<view class="lp_total_price">
+				合计：{{totalPrice}} +0积分
+			</view>
+			<button bindtap="toTotal">去结算</button></view>
+</view>
 </view>

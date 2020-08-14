@@ -14,12 +14,11 @@
     "pages/meAddress/meAddress",
     "pages/search/search",
     "pages/toAdd/toAdd",
-
-
     "pages/toGongDetail/toGongDetail",
     "pages/catexq/catexq",
     "pages/lower/lower",
-    "pages/gifts/gifts"
+    "pages/gifts/gifts",
+    "pages/cart_detail/cart_detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
