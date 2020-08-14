@@ -4,7 +4,7 @@
     <view>
       <image src="/assets/icon/right.png"></image>
     </view>
-    <view class="jbn_qu">快速导航开始</view>
+    <view class="jbn_qu">快速导航开始结束</view>
   </view>
   <view class="jbn_nav">
     <view>
