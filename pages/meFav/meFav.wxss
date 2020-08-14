@@ -1,0 +1,8 @@
+.jbn_favList{
+  width:100%;
+  height:1210rpx;
+  background:#f2f2f2;
+  color:#aeaeae;
+  text-align: center;
+  padding-top:200rpx;
+}

@@ -1,11 +1,11 @@
-// pages/meIntegral/meIntegral.js
+// pages/meWidth/meWidth.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    
+
   },
   // 返回上一个页面
   onClickLeft() {

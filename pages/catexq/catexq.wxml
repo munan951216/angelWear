@@ -87,7 +87,7 @@
 			<!-- 客服 -->
 			<image class="lcj_tb" src="/assets/icon/kefu.gif"></image>
 			<!-- 加购 -->
-			<image class="lcj_tb" src="/assets/icon/shopg.png"></image>
+			<image class="lcj_tb" src="/assets/icon/shopg.png" catchtap="lcj_cateJrtz"></image>
 			<!-- 收藏 -->
 			<image class="lcj_tb" wx:if="{{ isShow }}" src="/assets/icon/sc.png" catchtap="lcj_cateXqSc"></image>
 			<!-- 已收藏 -->

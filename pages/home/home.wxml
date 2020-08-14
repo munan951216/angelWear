@@ -22,9 +22,8 @@
 		<Bargaining />
 	</scroll-view>
 
-   <view class="lp_gifts" bindtap="toGift">
-	    <text class="iconfont &#xe600;" class="image"></text>
-	 </view>
+	<view class="lp_gifts" bindtap="toGift">
+		<text class="iconfont &#xe600;" class="image"></text>
+	</view>
 
 </view>
-

@@ -6,8 +6,8 @@
 
     "van-popup": "@vant/weapp/popup/index",
   
-    "van-stepper": "@vant/weapp/stepper/index"
-
+    "van-stepper": "@vant/weapp/stepper/index",
+    "van-toast": "@vant/weapp/toast/index"
   },
 "navigationBarTitleText": "商品详情"
 

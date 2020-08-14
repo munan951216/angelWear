@@ -1,13 +1,5 @@
-const {
-  baseUrl
-
-
-
-} = require('./env.js').prod
+const {baseUrl} = require('./env.js').prod
 //封装ajax
-
-
-
 const vipUrl = 'jbn1995'
 
 
@@ -41,7 +33,7 @@ module.exports = {
         success(res) {
 
           if (res.statusCode === 200) {
-            console.log(res)
+            // console.log(res)
 
             resolve(res.data.data)
             wx.hideLoading()

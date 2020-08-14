@@ -1,7 +1,7 @@
 <view class="swiper_wrapper">
 
 <!-- 首页的搜索框 -->
-	<view class="Qin_swiper_input">
+	<view class="Qin_swiper_input" catchtap="qin_cateSearch">
 		<input placeholder="请输入关键字" />
 	</view>
 

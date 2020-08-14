@@ -14,4 +14,8 @@ module.exports = {
   lcjCatexq: (id) => request('shop/goods/detail', 'GET', {
     id
   }, true),
+  //加入购物车接口
+  lcjJcart: () => request('shopping-cart/add', 'POST', {
+    id,number,token
+  }, true),
 }

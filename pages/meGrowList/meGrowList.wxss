@@ -1,0 +1,48 @@
+.jbn_meScore{
+  width:100%;
+  height:1210rpx;
+  background:#f5f5f9;
+}
+.jbn_ScoreCount{
+  width:100%;
+  height:200rpx;
+  display: flex;
+  background:#e85654;
+  flex-direction: column;
+  justify-content: space-between;
+  padding:54rpx 0rpx;
+  box-sizing: border-box;
+  color:#fff;
+  text-align: center;
+  font-size: 22rpx;
+}
+.van-field{
+  margin:20rpx 0rpx;
+}
+.van-button{
+  width:690rpx;
+}
+.jbn_roule{
+  width: 100%;
+  height:250rpx;
+  border-top:3rpx solid #ebebeb;
+  border-bottom:3rpx solid #ebebeb;
+  padding-left:28rpx;
+  box-sizing: border-box;
+  background:#fff;
+}
+.jbn_roule>text{
+  font-weight: bold;
+  border-bottom:4rpx solid #ebebeb;
+  height:90rpx;
+  display: block;
+  width:100%;
+  line-height: 90rpx;
+}
+.jbn_roule>view{
+  display: flex;
+  width:100%;
+  line-height: 80rpx;
+  flex-direction: column;
+  justify-content: space-between;
+}

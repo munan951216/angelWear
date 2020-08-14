@@ -33,19 +33,19 @@ Page({
 
 
 
-
+// 获取左侧列表数据
   onLoad: function (options) {
     // this.list()
     // this.shoplist()
     lcjCateL().then((res) => {
-      console.log(res)
+      // console.log(res)
       this.catelist = res
       // console.log(res.data.data)
       this.setData({
         catelist: this.catelist,
       })
     })
-
+// 获取右侧商品数据
     lcjCateR().then((res) => {
       this.shop  =  res
       let  { id }   =   this.catelist[0]
@@ -60,7 +60,7 @@ Page({
       })
 
     })
-    // this.lcj_cateLeft()
+   
   },
 
 
@@ -70,7 +70,7 @@ Page({
   },
 
 
-
+// 点击左侧列表对应右侧商品
   lcj_cateLeft(e) {
     // console.log(e)
     let  { id }  =  e.currentTarget.dataset
@@ -84,7 +84,7 @@ Page({
 
   //点击分类商品进入商品详情
   lcj_shoplist(e) {
-    console.log(1111)
+    // console.log(1111)
     let { id } = e.currentTarget.dataset;
 
     console.log('id', id)
@@ -92,87 +92,12 @@ Page({
       url: `/pages/catexq/catexq?id=${id}`,
     })
   },
-
-
-  //获取商品数据
-  // // 左侧导航栏数据
-  // list() {
-
-
-  //   wx.request({
-  //     url: 'https://api.it120.cc/jbn1995/shop/goods/category/all',
-  //     //设置请求头
-  //     header: {
-  //       'content-type': 'application/text'
-  //     },
-  //     //成功请求
-  //     success: (res) => {
-  //       //  console.log(res)
-  //       this.data.catelist = res.data.data
-  //       // console.log(res.data.data)
-  //       this.setData({
-  //         catelist: this.data.catelist,
-  //       })
-  //     }
-  //   })
-  // },
-
-
-  // 右侧列表数据
-  // shoplist() {
-
-
-  //   wx.request({
-  //     url: `https://api.it120.cc/jbn1995/shop/goods/list${this.data.id}`,
-  //     //设置请求头
-  //     header: {
-  //       'content-type': 'application/text'
-  //     },
-  //     //成功请求
-  //     success: (res) => {
-  //       // console.log(res)
-  //       this.data.shop = res.data.data
-  //       // console.log(res.data.data)
-  //       this.setData({
-  //         shop: this.data.shop,
-  //       })
-  //     }
-  //   })
-  // },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  // lcj_cateLeft(e) {
-  //   console.log(e)
-  //   let {
-  //     id
-  //   } = e.currentTarget.dataset
-
-
-  //   this.data.lcjcate = this.data.shop.filter(item => {
-  //     return item.categoryId == id
-  //   });
-
-
-  //   if (this.data.lcjcate.length > 0) {
-  //     // lcjcate:this.data.lcjcate
-  //     this.setData({
-  //       lcjcate: this.data.lcjcate
-  //     })
-  //     console.log(this.data.lcjcate)
-  //   } else {
-  //     this.setData({
-  //       lcjcate: [],
-  //     })
-  //     console.log(this.data.lcjcate)
-  //   }
-  //   console.log(this.data.lcjcate)
-  // },
-
-
-
-
-
+// 点击input框进入搜索页面
+lcj_cateSearch(){
+  wx.navigateTo({
+    url: '/pages/search/search',
+  })
+},
 
   /**
    * 生命周期函数--监听页面初次渲染完成

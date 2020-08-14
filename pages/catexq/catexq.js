@@ -1,7 +1,9 @@
 // pages/catexq/catexq.js
-
 const {
   lcjCatexq
+} = require("../../http/lcj_cate.js")
+const {
+ lcjJcart
 } = require("../../http/lcj_cate.js")
 
 Page({
@@ -10,7 +12,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // 商品详情数据
     catexqlist: {},
+    // 轮播
     swiper: [],
     id: "",
 
@@ -28,6 +32,7 @@ Page({
 
 
   onLoad: function (options) {
+    // 详情页面
     lcjCatexq(options.id).then(res => {
       console.log(res)
       this.catexqlist = res.category
@@ -39,9 +44,17 @@ Page({
         swiper: res.pics,
         article: res.content,
       })
+      // 富文本调用
       this.change()
+
     })
+
+
+   
   },
+
+
+
   //商品介绍   富文本解析
   change() {
     var WxParse = require('../../wxParse/wxParse.js');
@@ -78,9 +91,10 @@ Page({
   lcj_cateJrgwc() {
     this.data.show = true
     this.setData({
-      show: true
+      show: true,
+     
     })
-    // console.log(this.data.show)
+     // console.log(this.data.show)
   },
   //关闭弹出层
   onClose() {
@@ -89,7 +103,6 @@ Page({
     });
   },
   //收藏
-
   lcj_cateXqSc() {
 
     this.data.isShow = !this.data.isShow
@@ -101,14 +114,28 @@ Page({
   },
   //  点击跳转到购物页面
   lcj_cateJrtz() {
-    console.log(123)
-    // wx.navigateTo({
-    //   url:'/pages/cart/cart',
-    // })
-    wx.switchTab({
-      
+    wx.reLaunch({
+     
       url: '/pages/cart/cart',
+      
     })
+    // console.log(123)
+    let token = wx.getStorageSync('token')
+    let goodsId = this.data.pics[0].goodsId
+    let cNumber = 1
+    lcjJcart(token, goodsId, cNumber).then(res => {
+      console.log(res)
+    })
+
+
+
+   
+   
+    // 加入购物车  显示加入成功
+    wx.showToast({
+      title: '加入成功',
+    })
+   
   },
   /**
    * 生命周期函数--监听页面加载

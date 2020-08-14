@@ -57,9 +57,9 @@
   margin-top: 20rpx;
 }
 .lcj_rightlist{
-  width: 530rpx;
+  width: 540rpx;
   height: 170rpx;
-  margin: 20rpx;
+  margin: 10rpx;
   display: flex;
 }
 .lcj_rightlist image{

@@ -1,5 +1,7 @@
 // components/swiper/swiper.js
-const {getBanner} = require('../../http/lp_api');
+const {
+  getBanner
+} = require('../../http/lp_api');
 Component({
   /**
    * 组件的属性列表
@@ -18,10 +20,10 @@ Component({
 
   //请求轮播接口的数据
   ready() {
-    getBanner().then((res)=>{
-        this.setData({
-          banner:res.slice(0, 3)
-        })
+    getBanner().then((res) => {
+      this.setData({
+        banner: res.slice(0, 3)
+      })
     })
   },
 
@@ -29,6 +31,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    // 首页点击input框输入
+    qin_cateSearch() {
+      wx.navigateTo({
+        url: '/pages/search/search',
+      })
+    },
   }
 })

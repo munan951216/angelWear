@@ -2,7 +2,7 @@
 <view class="lcj_cate">
 	<!-- 搜索 -->
 	<view class="lcj_cateseach">
-		<view class="lcj_seach">
+		<view class="lcj_seach"  catchtap="lcj_cateSearch" >
 			<!-- input搜索框 -->
 			<input placeholder="输入搜索关键字">
 			</input>

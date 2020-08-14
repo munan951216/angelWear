@@ -1,6 +1,17 @@
 <van-nav-bar title="收货地址" left-arrow bind:click-left="onClickLeft" />
 <!-- 获取微信收货地址 -->
 <view class="jbn_getAdd">
-<text>获取微信收货地址</text>
-<van-icon name="arrow" />
+  <text>获取微信收货地址</text>
+  <van-icon name="arrow" />
 </view>
+<!-- 收货地址开始 -->
+<view class="jbn_addList">
+  <van-field value="{{address}}" type="text" label="省份" placeholder="请选择" right-icon="arrow"/>
+  <van-field value="{{name}}" type="text" label="姓名" placeholder="填写收货人" />
+  <van-field value="{{mobile}}" type="text" label="手机号码" placeholder="填写手机号码" />
+  <van-field value="{{info}}" type="text" label="详细地址" placeholder="街道门牌信息" />
+  <van-button type="primary" block>保存</van-button>
+</view>
+<!-- 收货地址结束 -->
+<!-- 城市选择开始 -->
+<!-- 城市选择结束 -->
