@@ -1,0 +1,46 @@
+/* components/nav/nav.wxss */
+.jbn_quiet{
+  width:565rpx;
+  height:108rpx;
+  background:#4c4c4c;
+  border-radius:15rpx 0rpx 0rpx 15rpx;
+  display: flex;
+  padding:20rpx;
+  box-sizing: border-box;
+  position: absolute;
+  right:0rpx;
+  bottom:200rpx;
+  align-items: center;
+}
+.jbn_quiet image{
+  width:26rpx;
+  height:26rpx;
+}
+.jbn_qu{
+  color:#f5f5f5;
+  font-size:24rpx;
+}
+.jbn_nav{
+  width:438rpx;
+  height:108rpx;
+  display: flex;
+}
+
+/* 展开 */
+.jbn_que{
+  width:565rpx;
+  height:108rpx;
+  background:#4c4c4c;
+  border-radius:15rpx 0rpx 0rpx 15rpx;
+  display: flex;
+  padding:20rpx;
+  box-sizing: border-box;
+  position: absolute;
+  right:0rpx;
+  bottom:200rpx;
+  align-items: center;
+}
+.jbn_que image{
+  width:26rpx;
+  height:26rpx;
+}

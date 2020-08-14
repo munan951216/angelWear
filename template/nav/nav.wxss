@@ -1,0 +1,40 @@
+.jbn_navList{
+  width:566rpx;
+  height:108rpx;
+  display:flex;
+  position: absolute;
+  bottom:126rpx;
+  left:185rpx;
+}
+image{
+  width:44rpx;
+  height:44rpx;
+}
+.jbn_navList>view{
+  display:flex;
+}
+.jbn_bar{
+  width:128rx;
+  background:#4c4c4c;
+  border-radius:10rx 0rpx 0rpx 10rpx;
+  padding:20rpx;
+  box-sizing: border-box;
+  justify-content: space-between;
+  color:#ffffff;
+  align-items: center;
+}
+.jbn_bar>text{
+  width:50rpx;
+  font-size:22rpx;
+}
+.jbn_navBar{
+  display: none;
+}
+.jbn_navBar>view{
+  display: flex;
+  flex-direction: column;
+  width:110rpx;
+  align-items: center;
+  justify-content: space-around;
+  color:#6f6f6f;
+}

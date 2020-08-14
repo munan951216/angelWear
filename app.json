@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/search/search",
+    
     "pages/me/me",
     "pages/cart/cart",
     "pages/home/home",
@@ -19,6 +19,7 @@
     "pages/meQian/meQian",
     "pages/meScore/meScore",
     "pages/meGrowList/meGrowList",
+    "pages/search/search",
     "pages/meWidth/meWidth"
   ],
   "window": {

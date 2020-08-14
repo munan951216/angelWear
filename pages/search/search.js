@@ -39,7 +39,7 @@ Page({
     }
   },
   jbnSearch(e){
-   let k = e.detail
+    let k = e.detail
     jjbnSearch().then((res) => {
       let data = res.filter((item) => {
         return item.name.includes(k)
@@ -78,16 +78,18 @@ Page({
     wx.showToast({
       title: '加入成功',
     })
+    let id = e.currentTarget.dataset.id
     let token=wx.getStorageSync("token")
     let num=1
+    // jbnAddCart(id,token,num).then((res)=>{
+        
+    // })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

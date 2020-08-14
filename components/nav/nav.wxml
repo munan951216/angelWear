@@ -1,0 +1,32 @@
+<!-- 展开 -->
+<view class="jbn_que">
+  <view>
+    <image src="/assets/icon/right.png"></image>
+  </view>
+  <view class="jbn_qu">快速导航</view>
+  <view class="jbn_nav">
+    <view>
+      <image src="/assets/icon/home.png"></image>
+      <view>首页</view>
+    </view>
+    <view>
+      <image src="/assets/icon/cate.png"></image>
+      <view>分类</view>
+    </view>
+    <view>
+      <image src="/assets/icon/cart.png"></image>
+      <view>购物车</view>
+    </view>
+    <view>
+      <image src="/assets/icon/me.png"></image>
+      <view>我的</view>
+    </view>
+  </view>
+</view>
+<!-- 收起 -->
+<!-- <view class="jbn_quiet">
+  <view>
+    <image src="/assets/icon/left.png"></image>
+  </view>
+  <view class="jbn_qu">快速导航</view>
+</view> -->

@@ -34,3 +34,4 @@
   <van-tab title="押金记录" name="c">暂无押金明细~</van-tab>
 </van-tabs>
 <!-- 资金明细导航栏结束 -->
+<nav />
