@@ -2,14 +2,13 @@
 
 
 	<!-- 购物车中没有商品 -->
-	<view class="lp_cart_null" wx:if="{{cartItem.length===0}}">
+	<view class="lp_cart_null" wx:if="{{cartItem.length==0}}">
 		<view class="cart_item_icon">
 			<image src="/assets/icon/cart.png"></image>
 		</view>
 		<view>购物车空空如也~</view>
 		<button>去逛逛</button>
 	</view>
-
 	<!-- 购物车中有商品 -->
 	<view wx:if="{{cartItem.length!==0}}">
 		<view wx:for="{{cartItem}}" wx:key="index" class="lp_good_wrapper">
@@ -22,7 +21,6 @@
 				<view bindtap="delete" data-item="{{item}}">
 					<image src="../../assets/icon/shanchu.png"></image>
 				</view>
-
 				<view class="count_computed">
 					<button size="mini" bindtap="addCount" data-item="{{item}}">+</button>
 					{{item.number}}
