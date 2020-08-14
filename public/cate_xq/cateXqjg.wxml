@@ -1,0 +1,40 @@
+<view class="lcj_cateDdl">
+		<view class="lcj_cateXqtb">
+			<!-- 客服 -->
+			<image class="lcj_tb" src="/assets/icon/kefu.gif"></image>
+			<!-- 加购 -->
+			<image class="lcj_tb" src="/assets/icon/shopg.png" catchtap="lcj_cateJrtz"></image>
+			<!-- 收藏 -->
+			<image class="lcj_tb" wx:if="{{ isShow }}" src="/assets/icon/sc.png" catchtap="lcj_cateXqSc"></image>
+			<!-- 已收藏 -->
+			<image class="lcj_tb" wx:else src="/assets/icon/ysc.png" catchtap="lcj_cateXqSc"></image>
+		</view>
+		<view class="lcj_cateJgwc" catchtap="lcj_cateJrgwc">
+			加入购物车
+		</view>
+		<view class="lcj_cateLjgm" catchtap="lcj_cateJrgwc">
+			立即购买
+		</view>
+	</view>
+<!-- 点击购物车弹出层 -->
+	<van-popup show="{{ show }}" closeable position="bottom" custom-style="height: 35%" bind:close="onClose">
+		<view class="lcj_cateXqJg">
+			<image class="lcj_cateXqsj" src="{{ catexqlist.pic}}">
+
+			</image>
+			<view class="lcj_cateXqB">
+				<text class="lcj_catename">{{ catexqlist.characteristic }}</text>
+
+				<view>
+					<text class="lcj_catexqXj">￥{{ catexqlist.minPrice }}</text>
+					<text class="lcj_catexqYj">￥{{ catexqlist.originalPrice }}</text>
+				</view>
+			</view>
+		</view>
+		<view class="lcj_cateXqSl">
+			<text class="lcj_cateXqGm">购买数量</text>
+			<van-stepper value="{{ 1 }}" bind:change="onChange" />
+		</view>
+		<view class="lcj_cateJran" catchtap="lcj_cateJrtz">加入购物车</view>
+
+	</van-popup>

@@ -27,6 +27,9 @@ Page({
       txt: "售后",
       icon: "after-sale"
     },
+
+
+
     ],
     jbn_origin: false,
     hidden: true,
@@ -119,22 +122,27 @@ Page({
     })
   },
 
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
   },
 
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
 
+
   },
+
 
   /**
    * 生命周期函数--监听页面显示
    */
+
   onShow: function () {
     this.setUseRInfo()
     index.checkHasLogined().then(isLogin => {
@@ -150,38 +158,49 @@ Page({
     })
   },
 
+
+
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
 
+
   },
+
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
 
+
   },
+
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
 
+
   },
+
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
 
+
   },
+
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+
 
   },
   // 页面刷新的时候请求用户数据
@@ -189,7 +208,7 @@ Page({
     wx.getUserInfo({
       success: (res) => {
         this.setData({
-          avatarUrl: JSON5.parse(res.rawData).avatarUrl,
+          avatarUrl: JSON.parse(res.rawData).avatarUrl,
           nickName: JSON.parse(res.rawData).nickName
         })
       }
@@ -212,8 +231,12 @@ Page({
     console.log(this.data.avatarUrl)
     console.log(this.data.nickName)
 
+
     // 如果有userinfo ,就调用register注册方法
     index.register(this)
+
+
+
 
 
 
@@ -224,5 +247,6 @@ Page({
       url: '/pages/me/me'
     })
   }
+
 
 })

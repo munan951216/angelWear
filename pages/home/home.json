@@ -1,5 +1,13 @@
 {
   "usingComponents": {
-    
+    "Swiper":"/components/swiper/swiper",
+    "Good":"/components/goodlist/goodlist",
+    "Bargaining":"/components/Bargaining/Bargaining"
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "天使童装",
+    "navigationBarTextStyle": "black"
   }
 }

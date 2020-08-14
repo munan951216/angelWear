@@ -2,7 +2,7 @@
 <view class="lcj_cate">
 	<!-- 搜索 -->
 	<view class="lcj_cateseach">
-		<view class="lcj_seach">
+		<view class="lcj_seach"  catchtap="lcj_cateSearch" >
 			<!-- input搜索框 -->
 			<input placeholder="输入搜索关键字">
 			</input>
@@ -21,7 +21,7 @@
 		<view class="lcj_right">
 			<!-- 右侧每个商品信息 -->
 			<view class="lcj_rightzwsj" wx:if="{{ lcjcate.length ==0 }}">—————暂无数据—————</view>
-			<view catchtap="lcj_shoplist" data-id="{{item.id}}" class="lcj_rightlist" wx:for="{{ lcjcate }}" wx:key="index">
+			<view catchtap="lcj_shoplist" data-id="{{item.id}}" class="lcj_rightlist" wx:for="{{ lcjcate }}" wx:key="*this">
 				<!-- 图片 -->
 			
 				<image src="{{item.pic}}"></image>
@@ -46,7 +46,7 @@
 	</view>
 
 
-<!-- 点击购物车弹出层 -->
+<!-- 点击购物车图标弹出层 -->
 	<van-popup show="{{ show }}" closeable position="bottom" custom-style="height: 20%" bind:close="onClose" >
 	<text>颜色</text>
 	

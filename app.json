@@ -1,9 +1,8 @@
 {
   "pages": [
-    
+    "pages/home/home",
     "pages/me/me",
     "pages/cart/cart",
-    "pages/home/home",
     "pages/cate/cate",
     "pages/meAssets/meAssets",
     "pages/meIntegral/meIntegral",
@@ -13,14 +12,18 @@
     "pages/meInvioce/meInvioce",
     "pages/meInv/meInv",
     "pages/meAddress/meAddress",
-    "pages/catexq/catexq",
     "pages/toAdd/toAdd",
+    "pages/toGongDetail/toGongDetail",
+    "pages/lower/lower",
+    "pages/gifts/gifts",
+    "pages/catexq/catexq",
     "pages/meFav/meFav",
     "pages/meQian/meQian",
     "pages/meScore/meScore",
     "pages/meGrowList/meGrowList",
     "pages/search/search",
     "pages/meWidth/meWidth"
+
   ],
   "window": {
     "backgroundTextStyle": "light",

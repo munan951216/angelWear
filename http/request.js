@@ -1,19 +1,13 @@
-const {
-  baseUrl
-} = require('./env.js').prod
+const {baseUrl} = require('./env.js').prod
 //封装ajax
-
-
 const vipUrl = 'jbn1995'
-
-
 module.exports = {
-
-
   request: function (url, method = "GET", data = {}, isSubDomain = true) {
 
 
+
     let fullUrl = `${baseUrl}/${isSubDomain  ?  vipUrl  :  ''}/${url}`;
+
 
 
     wx.showLoading({
@@ -21,9 +15,8 @@ module.exports = {
     })
 
 
-
-
     return new Promise((resolve, reject) => {
+
 
 
       wx.request({
@@ -35,12 +28,10 @@ module.exports = {
         },
         success(res) {
 
-          console.log('res::', res)
-          // && res.data.code === 0
           if (res.statusCode === 200) {
+            // console.log(res)
+
             resolve(res.data.data)
-
-
             wx.hideLoading()
           } else {
             wx.showToast({
@@ -53,11 +44,15 @@ module.exports = {
           wx.showToast({
             title: '数据接口有问题',
           })
+
           reject('数据接口有问题')
         }
       })
     })
   }
+
+
+
 
 
 

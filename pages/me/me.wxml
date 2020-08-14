@@ -45,7 +45,9 @@
 <!-- 我的订单导航开始 -->
 <view class="jbn_meOrderList">
   <van-grid column-num="5" border="{{false}}">
+
     <van-grid-item icon="{{item.icon}}" wx:for="{{orderList}}" wx:key="index" text="{{item.txt}}" catchtap="toOrder" data-index="{{index}}" />
+
   </van-grid>
 </view>
 <!-- 我的订单导航结束 -->
@@ -157,7 +159,9 @@
 <!-- 文字区域 -->
 <view class="jbn_meFen jbn_meEast">
   <text>EastWorld v 8.7.0</text>
+
 </view>
 <!-- 授权登录 -->
+
 <template is="jbn_orgin" data="{{jbn_origin:jbn_origin}}"></template>
 

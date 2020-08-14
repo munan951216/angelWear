@@ -1,6 +1,8 @@
+<!-- 引入授权登录模板 -->
+<import src="/template/login/login" />
 <view>
 	<!-- 轮播图 -->
-	<view class="banner" >
+	<view class="banner">
 		<swiper indicator-dots autoplay interval="2000" circular>
 			<block wx:for="{{swiper}}" wx:key="*this">
 				<swiper-item>
@@ -17,6 +19,8 @@
 			<text >分享有赏，好友下单后可得5元现金奖励</text>
 		</view>
 
+
+		<!-- 商品详情 -->
 		<view class="lcj_cateJg">
 			<view class="lcj_catez">
 
@@ -29,45 +33,10 @@
 				<image class="lcj_cateIcon" src="/assets/icon/link.png"></image>
 				<image class="lcj_cateIcon" src="/assets/icon/share.png"></image>
 			</view>
-
-		</view>
-
-
-
-	</view>
-
-	<!-- 商品拼团设置 -->
-	<view>
-		<view class="lcj_catePt">
-			<text>商品拼团设置</text>
-		</view>
-
-		<view class="lcj_cateCt">
-			<text>已成团</text>
-			<text class="lcj_cateSl">{{ catexqlist.paixu }}</text>
-		</view>
-		<view class="lcj_cateCt">
-			<text>成团数量</text>
-			<text class="lcj_cateSl">{{ catexqlist.fxType}}</text>
-		</view>
-		<view class="lcj_cateCt">
-			<text>退款条件</text>
-			<text class="lcj_cateSl">8个小时未成团</text>
-		</view>
-		<view class="lcj_cateCt">
-			<text>截止</text>
-			<text class="lcj_cateSl">{{ catexqlist.dateAdd }}</text>
-		</view>
-		<view class="lcj_cateXz">
-			<view>
-				<text>选择:</text>
-				<text>颜色</text>
-			</view>
-
-			<text class="lcj_cateSl">></text>
 		</view>
 	</view>
 
+	<!-- 商品介绍 -->
 	<view>
 		<view class="lcj_cateJs">
 			<text>商品介绍</text>
@@ -79,15 +48,47 @@
 	</view>
 	<view class="lcj_cateDdl">
 		<view class="lcj_cateXqtb">
+			<!-- 客服 -->
 			<image class="lcj_tb" src="/assets/icon/kefu.gif"></image>
-			<image class="lcj_tb" src="/assets/icon/shopg.png"></image>
-			<image class="lcj_tb" src="/assets/icon/sc.png"></image>
+			<!-- 加购 -->
+			<image class="lcj_tb" src="/assets/icon/shopg.png" catchtap="lcj_cateJrtz"></image>
+			<!-- 收藏 -->
+			<image class="lcj_tb" wx:if="{{ isShow }}" src="/assets/icon/sc.png" catchtap="lcj_cateXqSc"></image>
+			<!-- 已收藏 -->
+			<image class="lcj_tb" wx:else src="/assets/icon/ysc.png" catchtap="lcj_cateXqSc"></image>
 		</view>
-		<view class="lcj_cateJgwc">
+		<view class="lcj_cateJgwc" catchtap="lcj_cateJrgwc">
 			加入购物车
 		</view>
-		<view class="lcj_cateLjgm">
+		<view class="lcj_cateLjgm" catchtap="lcj_cateJrgwc">
 			立即购买
 		</view>
 	</view>
+
 </view>
+
+
+
+
+<!-- 点击购物车弹出层 -->
+<van-popup show="{{ show }}" closeable position="bottom" custom-style="height: 35%" bind:close="onClose">
+	<view class="lcj_cateXqJg">
+		<image class="lcj_cateXqsj" src="{{ catexqlist.pic}}">
+
+		</image>
+		<view class="lcj_cateXqB">
+			<text class="lcj_catename">{{ catexqlist.characteristic }}</text>
+
+			<view>
+				<text class="lcj_catexqXj">￥{{ catexqlist.minPrice }}</text>
+				<text class="lcj_catexqYj">￥{{ catexqlist.originalPrice }}</text>
+			</view>
+		</view>
+	</view>
+	<view class="lcj_cateXqSl">
+		<text class="lcj_cateXqGm">购买数量</text>
+		<van-stepper value="{{ 1 }}" bind:change="onChange" />
+	</view>
+	<view class="lcj_cateJran" catchtap="lcj_cateJrtz">加入购物车</view>
+</van-popup>
+

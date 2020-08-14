@@ -1,0 +1,14 @@
+<view class="swiper_wrapper">
+
+<!-- 首页的搜索框 -->
+	<view class="Qin_swiper_input" catchtap="qin_cateSearch">
+		<input placeholder="请输入关键字" />
+	</view>
+
+  <!-- 轮博图展示 -->
+	<swiper class="swiper_container" autoplay indicator-dots indicator-active-color="white" circular>
+		<swiper-item wx:for="{{banner}}" class="swiper_item_container">
+			<image src="{{item.picUrl}}"/>
+		</swiper-item>
+	</swiper>
+</view>

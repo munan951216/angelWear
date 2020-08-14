@@ -1,4 +1,7 @@
-/**app.wxss**/
+
+
+@import '/miniprogram_npm/@vant/weapp/common/index.wxss';
+
 @import "/wxParse/wxParse.wxss";
 .container {
   height: 100%;

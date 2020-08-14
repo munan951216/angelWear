@@ -11,20 +11,21 @@
 
 <!--基础元素-->
 <template name="wxParseVideo">
-  <!--增加video标签支持，并循环添加-->
-  <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-    <video class="{{item.classStr}} wxParse-{{item.tag}}-video" src="{{item.attr.src}}"></video>
-  </view>
+	<!--增加video标签支持，并循环添加-->
+	<view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+		<video class="{{item.classStr}} wxParse-{{item.tag}}-video" src="{{item.attr.src}}"></video>
+	</view>
 </template>
 
 <template name="wxParseImg">
-  <image class="{{item.classStr}} wxParse-{{item.tag}}" data-from="{{item.from}}" data-src="{{item.attr.src}}" data-idx="{{item.imgIndex}}" src="{{item.attr.src}}" mode="aspectFit" bindload="wxParseImgLoad" bindtap="wxParseImgTap" mode="widthFix" style="width:{{item.width}}px;"
-  />
+	<image class="{{item.classStr}} wxParse-{{item.tag}}" data-from="{{item.from}}" data-src="{{item.attr.src}}" data-idx="{{item.imgIndex}}" src="{{item.attr.src}}" mode="aspectFit" bindload="wxParseImgLoad" bindtap="wxParseImgTap" mode="widthFix" style="width:{{item.width}}px;" />
 </template>
 
 <template name="WxEmojiView">
+
   <view class="WxEmojiView wxParse-inline" style="{{item.styleStr}}">
-    <block wx:for="{{item.textArray}}" wx:key="index">
+    <block wx:for="{{item.textArray}}" wx:key="*this">
+
       <block class="{{item.text == '\\n' ? 'wxParse-hide':''}}" wx:if="{{item.node == 'text'}}">{{item.text}}</block>
       <block wx:elif="{{item.node == 'element'}}">
         <image class="wxEmoji" src="{{item.baseSrc}}{{item.text}}" />
@@ -34,25 +35,120 @@
 </template>
 
 <template name="WxParseBr">
-  <text>\n</text>
+	<text>\n</text>
 </template>
 <!--入口模版-->
 
 <template name="wxParse">
-  <block wx:for="{{wxParseData}}" wx:key="index">
+
+
+  <block wx:for="{{wxParseData}}" wx:key="*this">
+
     <template is="wxParse0" data="{{item}}" />
   </block>
+
+
 </template>
 
 
 <!--循环模版-->
 <template name="wxParse0">
+
+
+	<!--<template is="wxParse1" data="{{item}}" />-->
+	<!--判断是否是标签节点-->
+	<block wx:if="{{item.node == 'element'}}">
+		<block wx:if="{{item.tag == 'button'}}">
+			<button type="default" size="mini">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+					<template is="wxParse1" data="{{item}}" />
+				</block>
+			</button>
+		</block>
+		<!--li类型-->
+		<block wx:elif="{{item.tag == 'li'}}">
+			<view class="{{item.classStr}} wxParse-li" style="{{item.styleStr}}">
+				<view class="{{item.classStr}} wxParse-li-inner">
+					<view class="{{item.classStr}} wxParse-li-text">
+						<view class="{{item.classStr}} wxParse-li-circle"></view>
+					</view>
+					<view class="{{item.classStr}} wxParse-li-text">
+
+						<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+							<template is="wxParse1" data="{{item}}" />
+						</block>
+					</view>
+				</view>
+			</view>
+		</block>
+
+		<!--video类型-->
+		<block wx:elif="{{item.tag == 'video'}}">
+			<template is="wxParseVideo" data="{{item}}" />
+		</block>
+
+		<!--img类型-->
+		<block wx:elif="{{item.tag == 'img'}}">
+			<template is="wxParseImg" data="{{item}}" />
+		</block>
+
+		<!--a类型-->
+		<block wx:elif="{{item.tag == 'a'}}">
+			<view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+					<template is="wxParse1" data="{{item}}" />
+				</block>
+			</view>
+		</block>
+		<block wx:elif="{{item.tag == 'table'}}">
+			<view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+					<template is="wxParse1" data="{{item}}" />
+				</block>
+			</view>
+		</block>
+
+		<block wx:elif="{{item.tag == 'br'}}">
+			<template is="WxParseBr"></template>
+		</block>
+		<!--其他块级标签-->
+		<block wx:elif="{{item.tagType == 'block'}}">
+			<view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+					<template is="wxParse1" data="{{item}}" />
+				</block>
+			</view>
+		</block>
+
+		<!--内联标签-->
+		<view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+
+			<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+				<template is="wxParse1" data="{{item}}" />
+			</block>
+		</view>
+
+	</block>
+
+	<!--判断是否是文本节点-->
+	<block wx:elif="{{item.node == 'text'}}">
+		<!--如果是，直接进行-->
+		<template is="WxEmojiView" data="{{item}}" />
+	</block>
+
+
   <!--<template is="wxParse1" data="{{item}}" />-->
   <!--判断是否是标签节点-->
   <block wx:if="{{item.node == 'element'}}">
     <block wx:if="{{item.tag == 'button'}}">
       <button type="default" size="mini">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse1" data="{{item}}" />
         </block>
       </button>
@@ -65,7 +161,9 @@
             <view class="{{item.classStr}} wxParse-li-circle"></view>
           </view>
           <view class="{{item.classStr}} wxParse-li-text">
+
             <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
               <template is="wxParse1" data="{{item}}" />
             </block>
           </view>
@@ -86,14 +184,18 @@
     <!--a类型-->
     <block wx:elif="{{item.tag == 'a'}}">
       <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse1" data="{{item}}" />
         </block>
       </view>
     </block>
     <block wx:elif="{{item.tag == 'table'}}">
       <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse1" data="{{item}}" />
         </block>
       </view>
@@ -105,7 +207,9 @@
     <!--其他块级标签-->
     <block wx:elif="{{item.tagType == 'block'}}">
       <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse1" data="{{item}}" />
         </block>
       </view>
@@ -113,7 +217,9 @@
 
     <!--内联标签-->
     <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-      <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+
+      <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
         <template is="wxParse1" data="{{item}}" />
       </block>
     </view>
@@ -126,17 +232,99 @@
     <template is="WxEmojiView" data="{{item}}" />
   </block>
 
+
+
 </template>
 
 
 
 <!--循环模版-->
 <template name="wxParse1">
+
+	<!--<template is="wxParse2" data="{{item}}" />-->
+	<!--判断是否是标签节点-->
+	<block wx:if="{{item.node == 'element'}}">
+		<block wx:if="{{item.tag == 'button'}}">
+			<button type="default" size="mini">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+					<template is="wxParse2" data="{{item}}" />
+				</block>
+			</button>
+		</block>
+		<!--li类型-->
+		<block wx:elif="{{item.tag == 'li'}}">
+			<view class="{{item.classStr}} wxParse-li" style="{{item.styleStr}}">
+				<view class="{{item.classStr}} wxParse-li-inner">
+					<view class="{{item.classStr}} wxParse-li-text">
+						<view class="{{item.classStr}} wxParse-li-circle"></view>
+					</view>
+					<view class="{{item.classStr}} wxParse-li-text">
+
+						<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+							<template is="wxParse2" data="{{item}}" />
+						</block>
+					</view>
+				</view>
+			</view>
+		</block>
+
+		<!--video类型-->
+		<block wx:elif="{{item.tag == 'video'}}">
+			<template is="wxParseVideo" data="{{item}}" />
+		</block>
+
+		<!--img类型-->
+		<block wx:elif="{{item.tag == 'img'}}">
+			<template is="wxParseImg" data="{{item}}" />
+		</block>
+
+		<!--a类型-->
+		<block wx:elif="{{item.tag == 'a'}}">
+			<view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+					<template is="wxParse2" data="{{item}}" />
+				</block>
+			</view>
+		</block>
+
+		<block wx:elif="{{item.tag == 'br'}}">
+			<template is="WxParseBr"></template>
+		</block>
+		<!--其他块级标签-->
+		<block wx:elif="{{item.tagType == 'block'}}">
+			<view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+					<template is="wxParse2" data="{{item}}" />
+				</block>
+			</view>
+		</block>
+
+		<!--内联标签-->
+		<view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+
+			<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+				<template is="wxParse2" data="{{item}}" />
+			</block>
+		</view>
+
+	</block>
+
+	<!--判断是否是文本节点-->
+	<block wx:elif="{{item.node == 'text'}}">
+		<!--如果是，直接进行-->
+		<template is="WxEmojiView" data="{{item}}" />
+	</block>
+
+
   <!--<template is="wxParse2" data="{{item}}" />-->
   <!--判断是否是标签节点-->
   <block wx:if="{{item.node == 'element'}}">
     <block wx:if="{{item.tag == 'button'}}">
       <button type="default" size="mini">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
           <template is="wxParse2" data="{{item}}" />
         </block>
@@ -150,7 +338,9 @@
             <view class="{{item.classStr}} wxParse-li-circle"></view>
           </view>
           <view class="{{item.classStr}} wxParse-li-text">
+
             <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
               <template is="wxParse2" data="{{item}}" />
             </block>
           </view>
@@ -171,7 +361,9 @@
     <!--a类型-->
     <block wx:elif="{{item.tag == 'a'}}">
       <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse2" data="{{item}}" />
         </block>
       </view>
@@ -183,7 +375,9 @@
     <!--其他块级标签-->
     <block wx:elif="{{item.tagType == 'block'}}">
       <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse2" data="{{item}}" />
         </block>
       </view>
@@ -191,7 +385,9 @@
 
     <!--内联标签-->
     <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+
       <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
         <template is="wxParse2" data="{{item}}" />
       </block>
     </view>
@@ -204,17 +400,100 @@
     <template is="WxEmojiView" data="{{item}}" />
   </block>
 
+
+
 </template>
 
 
 <!--循环模版-->
 <template name="wxParse2">
+
+	<!--<template is="wxParse3" data="{{item}}" />-->
+	<!--判断是否是标签节点-->
+	<block wx:if="{{item.node == 'element'}}">
+		<block wx:if="{{item.tag == 'button'}}">
+			<button type="default" size="mini">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+					<template is="wxParse3" data="{{item}}" />
+				</block>
+			</button>
+		</block>
+		<!--li类型-->
+		<block wx:elif="{{item.tag == 'li'}}">
+			<view class="{{item.classStr}} wxParse-li" style="{{item.styleStr}}">
+				<view class="{{item.classStr}} wxParse-li-inner">
+					<view class="{{item.classStr}} wxParse-li-text">
+						<view class="{{item.classStr}} wxParse-li-circle"></view>
+					</view>
+					<view class="{{item.classStr}} wxParse-li-text">
+
+						<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+							<template is="wxParse3" data="{{item}}" />
+						</block>
+					</view>
+				</view>
+			</view>
+		</block>
+
+		<!--video类型-->
+		<block wx:elif="{{item.tag == 'video'}}">
+			<template is="wxParseVideo" data="{{item}}" />
+		</block>
+
+		<!--img类型-->
+		<block wx:elif="{{item.tag == 'img'}}">
+			<template is="wxParseImg" data="{{item}}" />
+		</block>
+
+		<!--a类型-->
+		<block wx:elif="{{item.tag == 'a'}}">
+			<view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+					<template is="wxParse3" data="{{item}}" />
+				</block>
+			</view>
+		</block>
+
+		<block wx:elif="{{item.tag == 'br'}}">
+			<template is="WxParseBr"></template>
+		</block>
+		<!--其他块级标签-->
+		<block wx:elif="{{item.tagType == 'block'}}">
+			<view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+					<template is="wxParse3" data="{{item}}" />
+				</block>
+			</view>
+		</block>
+
+		<!--内联标签-->
+		<view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+
+			<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+				<template is="wxParse3" data="{{item}}" />
+			</block>
+		</view>
+
+	</block>
+
+	<!--判断是否是文本节点-->
+	<block wx:elif="{{item.node == 'text'}}">
+		<!--如果是，直接进行-->
+		<template is="WxEmojiView" data="{{item}}" />
+	</block>
+
+
   <!--<template is="wxParse3" data="{{item}}" />-->
   <!--判断是否是标签节点-->
   <block wx:if="{{item.node == 'element'}}">
     <block wx:if="{{item.tag == 'button'}}">
       <button type="default" size="mini">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse3" data="{{item}}" />
         </block>
       </button>
@@ -227,7 +506,9 @@
             <view class="{{item.classStr}} wxParse-li-circle"></view>
           </view>
           <view class="{{item.classStr}} wxParse-li-text">
+
             <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
               <template is="wxParse3" data="{{item}}" />
             </block>
           </view>
@@ -248,7 +529,9 @@
     <!--a类型-->
     <block wx:elif="{{item.tag == 'a'}}">
       <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse3" data="{{item}}" />
         </block>
       </view>
@@ -260,7 +543,9 @@
     <!--其他块级标签-->
     <block wx:elif="{{item.tagType == 'block'}}">
       <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse3" data="{{item}}" />
         </block>
       </view>
@@ -269,6 +554,7 @@
     <!--内联标签-->
     <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
       <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
         <template is="wxParse3" data="{{item}}" />
       </block>
     </view>
@@ -285,12 +571,92 @@
 
 <!--循环模版-->
 <template name="wxParse3">
+
+	<!--<template is="wxParse4" data="{{item}}" />-->
+	<!--判断是否是标签节点-->
+	<block wx:if="{{item.node == 'element'}}">
+		<block wx:if="{{item.tag == 'button'}}">
+			<button type="default" size="mini">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+					<template is="wxParse4" data="{{item}}" />
+				</block>
+			</button>
+		</block>
+		<!--li类型-->
+		<block wx:elif="{{item.tag == 'li'}}">
+			<view class="{{item.classStr}} wxParse-li" style="{{item.styleStr}}">
+				<view class="{{item.classStr}} wxParse-li-inner">
+					<view class="{{item.classStr}} wxParse-li-text">
+						<view class="{{item.classStr}} wxParse-li-circle"></view>
+					</view>
+					<view class="{{item.classStr}} wxParse-li-text">
+
+						<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+							<template is="wxParse4" data="{{item}}" />
+						</block>
+					</view>
+				</view>
+			</view>
+		</block>
+
+		<!--video类型-->
+		<block wx:elif="{{item.tag == 'video'}}">
+			<template is="wxParseVideo" data="{{item}}" />
+		</block>
+
+		<!--img类型-->
+		<block wx:elif="{{item.tag == 'img'}}">
+			<template is="wxParseImg" data="{{item}}" />
+		</block>
+
+		<!--a类型-->
+		<block wx:elif="{{item.tag == 'a'}}">
+			<view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+					<template is="wxParse4" data="{{item}}" />
+				</block>
+			</view>
+		</block>
+
+		<block wx:elif="{{item.tag == 'br'}}">
+			<template is="WxParseBr"></template>
+		</block>
+		<!--其他块级标签-->
+		<block wx:elif="{{item.tagType == 'block'}}">
+			<view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+					<template is="wxParse4" data="{{item}}" />
+				</block>
+			</view>
+		</block>
+
+		<!--内联标签-->
+		<view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+			<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+				<template is="wxParse4" data="{{item}}" />
+			</block>
+		</view>
+
+	</block>
+
+	<!--判断是否是文本节点-->
+	<block wx:elif="{{item.node == 'text'}}">
+		<!--如果是，直接进行-->
+		<template is="WxEmojiView" data="{{item}}" />
+	</block>
+
+
   <!--<template is="wxParse4" data="{{item}}" />-->
   <!--判断是否是标签节点-->
   <block wx:if="{{item.node == 'element'}}">
     <block wx:if="{{item.tag == 'button'}}">
       <button type="default" size="mini">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse4" data="{{item}}" />
         </block>
       </button>
@@ -303,7 +669,9 @@
             <view class="{{item.classStr}} wxParse-li-circle"></view>
           </view>
           <view class="{{item.classStr}} wxParse-li-text">
+
             <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
               <template is="wxParse4" data="{{item}}" />
             </block>
           </view>
@@ -324,7 +692,9 @@
     <!--a类型-->
     <block wx:elif="{{item.tag == 'a'}}">
       <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse4" data="{{item}}" />
         </block>
       </view>
@@ -336,7 +706,9 @@
     <!--其他块级标签-->
     <block wx:elif="{{item.tagType == 'block'}}">
       <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse4" data="{{item}}" />
         </block>
       </view>
@@ -344,7 +716,9 @@
 
     <!--内联标签-->
     <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+
       <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
         <template is="wxParse4" data="{{item}}" />
       </block>
     </view>
@@ -357,16 +731,103 @@
     <template is="WxEmojiView" data="{{item}}" />
   </block>
 
+
+
 </template>
 
 <!--循环模版-->
 <template name="wxParse4">
+
+
+	<!--<template is="wxParse5" data="{{item}}" />-->
+	<!--判断是否是标签节点-->
+	<block wx:if="{{item.node == 'element'}}">
+		<block wx:if="{{item.tag == 'button'}}">
+			<button type="default" size="mini">
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+					<template is="wxParse5" data="{{item}}" />
+				</block>
+			</button>
+		</block>
+		<!--li类型-->
+		<block wx:elif="{{item.tag == 'li'}}">
+			<view class="{{item.classStr}} wxParse-li" style="{{item.styleStr}}">
+				<view class="{{item.classStr}} wxParse-li-inner">
+					<view class="{{item.classStr}} wxParse-li-text">
+						<view class="{{item.classStr}} wxParse-li-circle"></view>
+					</view>
+					<view class="{{item.classStr}} wxParse-li-text">
+
+						<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+							<template is="wxParse5" data="{{item}}" />
+						</block>
+					</view>
+				</view>
+			</view>
+		</block>
+
+		<!--video类型-->
+		<block wx:elif="{{item.tag == 'video'}}">
+			<template is="wxParseVideo" data="{{item}}" />
+		</block>
+
+		<!--img类型-->
+		<block wx:elif="{{item.tag == 'img'}}">
+			<template is="wxParseImg" data="{{item}}" />
+		</block>
+
+		<!--a类型-->
+		<block wx:elif="{{item.tag == 'a'}}">
+			<view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+					<template is="wxParse5" data="{{item}}" />
+				</block>
+			</view>
+		</block>
+
+		<block wx:elif="{{item.tag == 'br'}}">
+			<template is="WxParseBr"></template>
+		</block>
+		<!--其他块级标签-->
+		<block wx:elif="{{item.tagType == 'block'}}">
+			<view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+					<template is="wxParse5" data="{{item}}" />
+				</block>
+			</view>
+		</block>
+
+		<!--内联标签-->
+		<view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+
+			<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+				<template is="wxParse5" data="{{item}}" />
+			</block>
+		</view>
+
+	</block>
+
+	<!--判断是否是文本节点-->
+	<block wx:elif="{{item.node == 'text'}}">
+		<!--如果是，直接进行-->
+		<template is="WxEmojiView" data="{{item}}" />
+	</block>
+
+
   <!--<template is="wxParse5" data="{{item}}" />-->
   <!--判断是否是标签节点-->
   <block wx:if="{{item.node == 'element'}}">
     <block wx:if="{{item.tag == 'button'}}">
       <button type="default" size="mini">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse5" data="{{item}}" />
         </block>
       </button>
@@ -379,7 +840,9 @@
             <view class="{{item.classStr}} wxParse-li-circle"></view>
           </view>
           <view class="{{item.classStr}} wxParse-li-text">
+
             <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
               <template is="wxParse5" data="{{item}}" />
             </block>
           </view>
@@ -400,7 +863,9 @@
     <!--a类型-->
     <block wx:elif="{{item.tag == 'a'}}">
       <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse5" data="{{item}}" />
         </block>
       </view>
@@ -413,6 +878,7 @@
     <block wx:elif="{{item.tagType == 'block'}}">
       <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse5" data="{{item}}" />
         </block>
       </view>
@@ -420,7 +886,9 @@
 
     <!--内联标签-->
     <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+
       <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
         <template is="wxParse5" data="{{item}}" />
       </block>
     </view>
@@ -433,16 +901,102 @@
     <template is="WxEmojiView" data="{{item}}" />
   </block>
 
+
+
 </template>
 
 <!--循环模版-->
 <template name="wxParse5">
+
+	<!--<template is="wxParse6" data="{{item}}" />-->
+	<!--判断是否是标签节点-->
+	<block wx:if="{{item.node == 'element'}}">
+		<block wx:if="{{item.tag == 'button'}}">
+			<button type="default" size="mini">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+					<template is="wxParse6" data="{{item}}" />
+				</block>
+			</button>
+		</block>
+		<!--li类型-->
+		<block wx:elif="{{item.tag == 'li'}}">
+			<view class="{{item.classStr}} wxParse-li" style="{{item.styleStr}}">
+				<view class="{{item.classStr}} wxParse-li-inner">
+					<view class="{{item.classStr}} wxParse-li-text">
+						<view class="{{item.classStr}} wxParse-li-circle"></view>
+					</view>
+					<view class="{{item.classStr}} wxParse-li-text">
+
+						<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+							<template is="wxParse6" data="{{item}}" />
+						</block>
+					</view>
+				</view>
+			</view>
+		</block>
+
+		<!--video类型-->
+		<block wx:elif="{{item.tag == 'video'}}">
+			<template is="wxParseVideo" data="{{item}}" />
+		</block>
+
+		<!--img类型-->
+		<block wx:elif="{{item.tag == 'img'}}">
+			<template is="wxParseImg" data="{{item}}" />
+		</block>
+
+		<!--a类型-->
+		<block wx:elif="{{item.tag == 'a'}}">
+			<view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+					<template is="wxParse6" data="{{item}}" />
+				</block>
+			</view>
+		</block>
+
+		<block wx:elif="{{item.tag == 'br'}}">
+			<template is="WxParseBr"></template>
+		</block>
+		<!--其他块级标签-->
+		<block wx:elif="{{item.tagType == 'block'}}">
+			<view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+					<template is="wxParse6" data="{{item}}" />
+				</block>
+			</view>
+		</block>
+
+		<!--内联标签-->
+		<view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+
+			<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+				<template is="wxParse6" data="{{item}}" />
+			</block>
+		</view>
+
+	</block>
+
+	<!--判断是否是文本节点-->
+	<block wx:elif="{{item.node == 'text'}}">
+		<!--如果是，直接进行-->
+		<template is="WxEmojiView" data="{{item}}" />
+	</block>
+
+
   <!--<template is="wxParse6" data="{{item}}" />-->
   <!--判断是否是标签节点-->
   <block wx:if="{{item.node == 'element'}}">
     <block wx:if="{{item.tag == 'button'}}">
       <button type="default" size="mini">
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse6" data="{{item}}" />
         </block>
       </button>
@@ -455,7 +1009,9 @@
             <view class="{{item.classStr}} wxParse-li-circle"></view>
           </view>
           <view class="{{item.classStr}} wxParse-li-text">
+
             <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
               <template is="wxParse6" data="{{item}}" />
             </block>
           </view>
@@ -476,7 +1032,9 @@
     <!--a类型-->
     <block wx:elif="{{item.tag == 'a'}}">
       <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse6" data="{{item}}" />
         </block>
       </view>
@@ -488,7 +1046,9 @@
     <!--其他块级标签-->
     <block wx:elif="{{item.tagType == 'block'}}">
       <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse6" data="{{item}}" />
         </block>
       </view>
@@ -496,7 +1056,9 @@
 
     <!--内联标签-->
     <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+
       <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
         <template is="wxParse6" data="{{item}}" />
       </block>
     </view>
@@ -509,16 +1071,101 @@
     <template is="WxEmojiView" data="{{item}}" />
   </block>
 
+
 </template>
 
 <!--循环模版-->
 <template name="wxParse6">
+	<!--<template is="wxParse7" data="{{item}}" />-->
+	<!--判断是否是标签节点-->
+	<block wx:if="{{item.node == 'element'}}">
+		<block wx:if="{{item.tag == 'button'}}">
+			<button type="default" size="mini">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+					<template is="wxParse7" data="{{item}}" />
+				</block>
+			</button>
+		</block>
+		<!--li类型-->
+		<block wx:elif="{{item.tag == 'li'}}">
+			<view class="{{item.classStr}} wxParse-li" style="{{item.styleStr}}">
+				<view class="{{item.classStr}} wxParse-li-inner">
+					<view class="{{item.classStr}} wxParse-li-text">
+						<view class="{{item.classStr}} wxParse-li-circle"></view>
+					</view>
+					<view class="{{item.classStr}} wxParse-li-text">
+
+						<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+							<template is="wxParse7" data="{{item}}" />
+						</block>
+					</view>
+				</view>
+			</view>
+		</block>
+
+		<!--video类型-->
+		<block wx:elif="{{item.tag == 'video'}}">
+			<template is="wxParseVideo" data="{{item}}" />
+		</block>
+
+		<!--img类型-->
+		<block wx:elif="{{item.tag == 'img'}}">
+			<template is="wxParseImg" data="{{item}}" />
+		</block>
+
+		<!--a类型-->
+		<block wx:elif="{{item.tag == 'a'}}">
+			<view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+					<template is="wxParse7" data="{{item}}" />
+				</block>
+			</view>
+		</block>
+
+		<block wx:elif="{{item.tag == 'br'}}">
+			<template is="WxParseBr"></template>
+		</block>
+		<!--其他块级标签-->
+		<block wx:elif="{{item.tagType == 'block'}}">
+			<view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+					<template is="wxParse7" data="{{item}}" />
+				</block>
+			</view>
+		</block>
+
+		<!--内联标签-->
+		<view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+
+			<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+				<template is="wxParse7" data="{{item}}" />
+			</block>
+		</view>
+
+	</block>
+
+	<!--判断是否是文本节点-->
+	<block wx:elif="{{item.node == 'text'}}">
+		<!--如果是，直接进行-->
+		<template is="WxEmojiView" data="{{item}}" />
+	</block>
+
   <!--<template is="wxParse7" data="{{item}}" />-->
   <!--判断是否是标签节点-->
   <block wx:if="{{item.node == 'element'}}">
     <block wx:if="{{item.tag == 'button'}}">
       <button type="default" size="mini">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse7" data="{{item}}" />
         </block>
       </button>
@@ -531,7 +1178,9 @@
             <view class="{{item.classStr}} wxParse-li-circle"></view>
           </view>
           <view class="{{item.classStr}} wxParse-li-text">
+
             <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
               <template is="wxParse7" data="{{item}}" />
             </block>
           </view>
@@ -551,8 +1200,9 @@
 
     <!--a类型-->
     <block wx:elif="{{item.tag == 'a'}}">
-      <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+      <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">=
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse7" data="{{item}}" />
         </block>
       </view>
@@ -564,7 +1214,9 @@
     <!--其他块级标签-->
     <block wx:elif="{{item.tagType == 'block'}}">
       <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse7" data="{{item}}" />
         </block>
       </view>
@@ -572,7 +1224,9 @@
 
     <!--内联标签-->
     <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+
       <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
         <template is="wxParse7" data="{{item}}" />
       </block>
     </view>
@@ -584,16 +1238,98 @@
     <!--如果是，直接进行-->
     <template is="WxEmojiView" data="{{item}}" />
   </block>
-
 </template>
 <!--循环模版-->
 <template name="wxParse7">
+
+	<!--<template is="wxParse8" data="{{item}}" />-->
+	<!--判断是否是标签节点-->
+	<block wx:if="{{item.node == 'element'}}">
+		<block wx:if="{{item.tag == 'button'}}">
+			<button type="default" size="mini">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+					<template is="wxParse8" data="{{item}}" />
+				</block>
+			</button>
+		</block>
+		<!--li类型-->
+		<block wx:elif="{{item.tag == 'li'}}">
+			<view class="{{item.classStr}} wxParse-li" style="{{item.styleStr}}">
+				<view class="{{item.classStr}} wxParse-li-inner">
+					<view class="{{item.classStr}} wxParse-li-text">
+						<view class="{{item.classStr}} wxParse-li-circle"></view>
+					</view>
+					<view class="{{item.classStr}} wxParse-li-text">
+						 <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+							<template is="wxParse8" data="{{item}}" />
+		</block>
+		</view>
+		</view>
+		</view>
+	</block>
+
+	<!--video类型-->
+	<block wx:elif="{{item.tag == 'video'}}">
+		<template is="wxParseVideo" data="{{item}}" />
+	</block>
+
+	<!--img类型-->
+	<block wx:elif="{{item.tag == 'img'}}">
+		<template is="wxParseImg" data="{{item}}" />
+	</block>
+
+	<!--a类型-->
+	<block wx:elif="{{item.tag == 'a'}}">
+		<view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+
+			<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+				<template is="wxParse8" data="{{item}}" />
+			</block>
+		</view>
+	</block>
+
+	<block wx:elif="{{item.tag == 'br'}}">
+		<template is="WxParseBr"></template>
+	</block>
+	<!--其他块级标签-->
+	<block wx:elif="{{item.tagType == 'block'}}">
+		<view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+			<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+				<template is="wxParse8" data="{{item}}" />
+			</block>
+		</view>
+	</block>
+
+	<!--内联标签-->
+	<view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+
+		<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+			<template is="wxParse8" data="{{item}}" />
+		</block>
+	</view>
+
+	</block>
+
+	<!--判断是否是文本节点-->
+	<block wx:elif="{{item.node == 'text'}}">
+		<!--如果是，直接进行-->
+		<template is="WxEmojiView" data="{{item}}" />
+	</block>
+
+
   <!--<template is="wxParse8" data="{{item}}" />-->
   <!--判断是否是标签节点-->
   <block wx:if="{{item.node == 'element'}}">
     <block wx:if="{{item.tag == 'button'}}">
       <button type="default" size="mini">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse8" data="{{item}}" />
         </block>
       </button>
@@ -606,7 +1342,9 @@
             <view class="{{item.classStr}} wxParse-li-circle"></view>
           </view>
           <view class="{{item.classStr}} wxParse-li-text">
+
             <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
               <template is="wxParse8" data="{{item}}" />
             </block>
           </view>
@@ -628,6 +1366,7 @@
     <block wx:elif="{{item.tag == 'a'}}">
       <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse8" data="{{item}}" />
         </block>
       </view>
@@ -639,7 +1378,9 @@
     <!--其他块级标签-->
     <block wx:elif="{{item.tagType == 'block'}}">
       <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse8" data="{{item}}" />
         </block>
       </view>
@@ -647,7 +1388,9 @@
 
     <!--内联标签-->
     <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+
       <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
         <template is="wxParse8" data="{{item}}" />
       </block>
     </view>
@@ -660,16 +1403,103 @@
     <template is="WxEmojiView" data="{{item}}" />
   </block>
 
+
 </template>
 
 <!--循环模版-->
 <template name="wxParse8">
+
+	<!--<template is="wxParse9" data="{{item}}" />-->
+	<!--判断是否是标签节点-->
+	<block wx:if="{{item.node == 'element'}}">
+		<block wx:if="{{item.tag == 'button'}}">
+			<button type="default" size="mini">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+					<template is="wxParse9" data="{{item}}" />
+				</block>
+			</button>
+		</block>
+		<!--li类型-->
+		<block wx:elif="{{item.tag == 'li'}}">
+			<view class="{{item.classStr}} wxParse-li" style="{{item.styleStr}}">
+				<view class="{{item.classStr}} wxParse-li-inner">
+					<view class="{{item.classStr}} wxParse-li-text">
+						<view class="{{item.classStr}} wxParse-li-circle"></view>
+					</view>
+					<view class="{{item.classStr}} wxParse-li-text">
+
+						<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+							<template is="wxParse9" data="{{item}}" />
+						</block>
+					</view>
+				</view>
+			</view>
+		</block>
+
+		<!--video类型-->
+		<block wx:elif="{{item.tag == 'video'}}">
+			<template is="wxParseVideo" data="{{item}}" />
+		</block>
+
+		<!--img类型-->
+		<block wx:elif="{{item.tag == 'img'}}">
+			<template is="wxParseImg" data="{{item}}" />
+		</block>
+
+		<!--a类型-->
+		<block wx:elif="{{item.tag == 'a'}}">
+			<view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+					<template is="wxParse9" data="{{item}}" />
+				</block>
+			</view>
+		</block>
+
+		<block wx:elif="{{item.tag == 'br'}}">
+			<template is="WxParseBr"></template>
+		</block>
+		<!--其他块级标签-->
+		<block wx:elif="{{item.tagType == 'block'}}">
+			<view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+					<template is="wxParse9" data="{{item}}" />
+				</block>
+			</view>
+		</block>
+
+		<!--内联标签-->
+		<view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+
+			<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+				<template is="wxParse9" data="{{item}}" />
+			</block>
+		</view>
+
+	</block>
+
+	<!--判断是否是文本节点-->
+	<block wx:elif="{{item.node == 'text'}}">
+		<!--如果是，直接进行-->
+		<template is="WxEmojiView" data="{{item}}" />
+	</block>
+
+
   <!--<template is="wxParse9" data="{{item}}" />-->
   <!--判断是否是标签节点-->
   <block wx:if="{{item.node == 'element'}}">
     <block wx:if="{{item.tag == 'button'}}">
       <button type="default" size="mini">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse9" data="{{item}}" />
         </block>
       </button>
@@ -683,6 +1513,7 @@
           </view>
           <view class="{{item.classStr}} wxParse-li-text">
             <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
               <template is="wxParse9" data="{{item}}" />
             </block>
           </view>
@@ -703,7 +1534,9 @@
     <!--a类型-->
     <block wx:elif="{{item.tag == 'a'}}">
       <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse9" data="{{item}}" />
         </block>
       </view>
@@ -715,7 +1548,9 @@
     <!--其他块级标签-->
     <block wx:elif="{{item.tagType == 'block'}}">
       <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse9" data="{{item}}" />
         </block>
       </view>
@@ -723,7 +1558,9 @@
 
     <!--内联标签-->
     <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+
       <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
         <template is="wxParse9" data="{{item}}" />
       </block>
     </view>
@@ -736,16 +1573,103 @@
     <template is="WxEmojiView" data="{{item}}" />
   </block>
 
+
 </template>
 
 <!--循环模版-->
 <template name="wxParse9">
+
+	<!--<template is="wxParse10" data="{{item}}" />-->
+	<!--判断是否是标签节点-->
+	<block wx:if="{{item.node == 'element'}}">
+		<block wx:if="{{item.tag == 'button'}}">
+			<button type="default" size="mini">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+					<template is="wxParse10" data="{{item}}" />
+				</block>
+			</button>
+		</block>
+		<!--li类型-->
+		<block wx:elif="{{item.tag == 'li'}}">
+			<view class="{{item.classStr}} wxParse-li" style="{{item.styleStr}}">
+				<view class="{{item.classStr}} wxParse-li-inner">
+					<view class="{{item.classStr}} wxParse-li-text">
+						<view class="{{item.classStr}} wxParse-li-circle"></view>
+					</view>
+					<view class="{{item.classStr}} wxParse-li-text">
+
+						<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+							<template is="wxParse10" data="{{item}}" />
+						</block>
+					</view>
+				</view>
+			</view>
+		</block>
+
+		<!--video类型-->
+		<block wx:elif="{{item.tag == 'video'}}">
+			<template is="wxParseVideo" data="{{item}}" />
+		</block>
+
+		<!--img类型-->
+		<block wx:elif="{{item.tag == 'img'}}">
+			<template is="wxParseImg" data="{{item}}" />
+		</block>
+
+		<!--a类型-->
+		<block wx:elif="{{item.tag == 'a'}}">
+			<view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+					<template is="wxParse10" data="{{item}}" />
+				</block>
+			</view>
+		</block>
+
+		<block wx:elif="{{item.tag == 'br'}}">
+			<template is="WxParseBr"></template>
+		</block>
+		<!--其他块级标签-->
+		<block wx:elif="{{item.tagType == 'block'}}">
+			<view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+					<template is="wxParse10" data="{{item}}" />
+				</block>
+			</view>
+		</block>
+
+		<!--内联标签-->
+		<view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+
+			<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+				<template is="wxParse10" data="{{item}}" />
+			</block>
+		</view>
+
+	</block>
+
+	<!--判断是否是文本节点-->
+	<block wx:elif="{{item.node == 'text'}}">
+		<!--如果是，直接进行-->
+		<template is="WxEmojiView" data="{{item}}" />
+	</block>
+
+
   <!--<template is="wxParse10" data="{{item}}" />-->
   <!--判断是否是标签节点-->
   <block wx:if="{{item.node == 'element'}}">
     <block wx:if="{{item.tag == 'button'}}">
       <button type="default" size="mini">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse10" data="{{item}}" />
         </block>
       </button>
@@ -758,7 +1682,9 @@
             <view class="{{item.classStr}} wxParse-li-circle"></view>
           </view>
           <view class="{{item.classStr}} wxParse-li-text">
+
             <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
               <template is="wxParse10" data="{{item}}" />
             </block>
           </view>
@@ -779,7 +1705,9 @@
     <!--a类型-->
     <block wx:elif="{{item.tag == 'a'}}">
       <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse10" data="{{item}}" />
         </block>
       </view>
@@ -791,7 +1719,9 @@
     <!--其他块级标签-->
     <block wx:elif="{{item.tagType == 'block'}}">
       <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse10" data="{{item}}" />
         </block>
       </view>
@@ -799,7 +1729,7 @@
 
     <!--内联标签-->
     <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-      <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+ <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
         <template is="wxParse10" data="{{item}}" />
       </block>
     </view>
@@ -812,16 +1742,97 @@
     <template is="WxEmojiView" data="{{item}}" />
   </block>
 
+
+
 </template>
 
 <!--循环模版-->
 <template name="wxParse10">
+
+	<!--<template is="wxParse11" data="{{item}}" />-->
+	<!--判断是否是标签节点-->
+	<block wx:if="{{item.node == 'element'}}">
+		<block wx:if="{{item.tag == 'button'}}">
+			<button type="default" size="mini">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+					<template is="wxParse11" data="{{item}}" />
+				</block>
+			</button>
+		</block>
+		<!--li类型-->
+		<block wx:elif="{{item.tag == 'li'}}">
+			<view class="{{item.classStr}} wxParse-li" style="{{item.styleStr}}">
+				<view class="{{item.classStr}} wxParse-li-inner">
+					<view class="{{item.classStr}} wxParse-li-text">
+						<view class="{{item.classStr}} wxParse-li-circle"></view>
+					</view>
+					<view class="{{item.classStr}} wxParse-li-text">
+
+						<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+							<template is="wxParse11" data="{{item}}" />
+						</block>
+					</view>
+				</view>
+			</view>
+		</block>
+
+		<!--video类型-->
+		<block wx:elif="{{item.tag == 'video'}}">
+			<template is="wxParseVideo" data="{{item}}" />
+		</block>
+
+		<!--img类型-->
+		<block wx:elif="{{item.tag == 'img'}}">
+			<template is="wxParseImg" data="{{item}}" />
+		</block>
+		<!--a类型-->
+		<block wx:elif="{{item.tag == 'a'}}">
+			<view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+					<template is="wxParse11" data="{{item}}" />
+				</block>
+			</view>
+		</block>
+		<block wx:elif="{{item.tag == 'br'}}">
+			<template is="WxParseBr"></template>
+		</block>
+		<!--其他块级标签-->
+		<block wx:elif="{{item.tagType == 'block'}}">
+			<view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+					<template is="wxParse11" data="{{item}}" />
+				</block>
+			</view>
+		</block>
+
+		<!--内联标签-->
+		<view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+			 <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+				<template is="wxParse11" data="{{item}}" />
+	</block>
+	</view>
+
+	</block>
+
+	<!--判断是否是文本节点-->
+	<block wx:elif="{{item.node == 'text'}}">
+		<!--如果是，直接进行-->
+		<template is="WxEmojiView" data="{{item}}" />
+	</block>
+
+=======
+
   <!--<template is="wxParse11" data="{{item}}" />-->
   <!--判断是否是标签节点-->
   <block wx:if="{{item.node == 'element'}}">
     <block wx:if="{{item.tag == 'button'}}">
       <button type="default" size="mini">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse11" data="{{item}}" />
         </block>
       </button>
@@ -834,7 +1845,9 @@
             <view class="{{item.classStr}} wxParse-li-circle"></view>
           </view>
           <view class="{{item.classStr}} wxParse-li-text">
+
             <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
               <template is="wxParse11" data="{{item}}" />
             </block>
           </view>
@@ -856,6 +1869,7 @@
     <block wx:elif="{{item.tag == 'a'}}">
       <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse11" data="{{item}}" />
         </block>
       </view>
@@ -867,7 +1881,9 @@
     <!--其他块级标签-->
     <block wx:elif="{{item.tagType == 'block'}}">
       <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse11" data="{{item}}" />
         </block>
       </view>
@@ -875,7 +1891,9 @@
 
     <!--内联标签-->
     <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+
       <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
         <template is="wxParse11" data="{{item}}" />
       </block>
     </view>
@@ -888,16 +1906,101 @@
     <template is="WxEmojiView" data="{{item}}" />
   </block>
 
+>>>>>>> be3b04bf38f0bd54582cf832c1bf0b7a97fd4fb2
+
 </template>
 
 <!--循环模版-->
 <template name="wxParse11">
+
+
+	<!--<template is="wxParse12" data="{{item}}" />-->
+	<!--判断是否是标签节点-->
+	<block wx:if="{{item.node == 'element'}}">
+		<block wx:if="{{item.tag == 'button'}}">
+			<button type="default" size="mini">
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+					<template is="wxParse12" data="{{item}}" />
+				</block>
+			</button>
+		</block>
+		<!--li类型-->
+		<block wx:elif="{{item.tag == 'li'}}">
+			<view class="{{item.classStr}} wxParse-li" style="{{item.styleStr}}">
+				<view class="{{item.classStr}} wxParse-li-inner">
+					<view class="{{item.classStr}} wxParse-li-text">
+						<view class="{{item.classStr}} wxParse-li-circle"></view>
+					</view>
+					<view class="{{item.classStr}} wxParse-li-text">
+						<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+							<template is="wxParse12" data="{{item}}" />
+						</block>
+					</view>
+				</view>
+			</view>
+		</block>
+
+		<!--video类型-->
+		<block wx:elif="{{item.tag == 'video'}}">
+			<template is="wxParseVideo" data="{{item}}" />
+		</block>
+
+		<!--img类型-->
+		<block wx:elif="{{item.tag == 'img'}}">
+			<template is="wxParseImg" data="{{item}}" />
+		</block>
+
+		<!--a类型-->
+		<block wx:elif="{{item.tag == 'a'}}">
+			<view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+					<template is="wxParse12" data="{{item}}" />
+				</block>
+			</view>
+		</block>
+
+		<block wx:elif="{{item.tag == 'br'}}">
+			<template is="WxParseBr"></template>
+		</block>
+		<!--其他块级标签-->
+		<block wx:elif="{{item.tagType == 'block'}}">
+			<view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+
+				<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+					<template is="wxParse12" data="{{item}}" />
+				</block>
+			</view>
+		</block>
+
+		<!--内联标签-->
+		<view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+
+			<block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
+				<template is="wxParse12" data="{{item}}" />
+			</block>
+		</view>
+
+	</block>
+
+	<!--判断是否是文本节点-->
+	<block wx:elif="{{item.node == 'text'}}">
+		<!--如果是，直接进行-->
+		<template is="WxEmojiView" data="{{item}}" />
+	</block>
+
+
   <!--<template is="wxParse12" data="{{item}}" />-->
   <!--判断是否是标签节点-->
   <block wx:if="{{item.node == 'element'}}">
     <block wx:if="{{item.tag == 'button'}}">
       <button type="default" size="mini">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse12" data="{{item}}" />
         </block>
       </button>
@@ -910,7 +2013,9 @@
             <view class="{{item.classStr}} wxParse-li-circle"></view>
           </view>
           <view class="{{item.classStr}} wxParse-li-text">
+
             <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
               <template is="wxParse12" data="{{item}}" />
             </block>
           </view>
@@ -931,7 +2036,9 @@
     <!--a类型-->
     <block wx:elif="{{item.tag == 'a'}}">
       <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse12" data="{{item}}" />
         </block>
       </view>
@@ -943,7 +2050,9 @@
     <!--其他块级标签-->
     <block wx:elif="{{item.tagType == 'block'}}">
       <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
           <template is="wxParse12" data="{{item}}" />
         </block>
       </view>
@@ -951,7 +2060,9 @@
 
     <!--内联标签-->
     <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+
       <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="*this">
+
         <template is="wxParse12" data="{{item}}" />
       </block>
     </view>
@@ -963,5 +2074,4 @@
     <!--如果是，直接进行-->
     <template is="WxEmojiView" data="{{item}}" />
   </block>
-
 </template>

@@ -1,0 +1,14 @@
+
+<view>
+   <view> 
+   </view>
+   <!-- 九宫格商品，点击跳转到详情 -->
+    <view class="good_container">
+      <view class="good_item" wx:for="{{good}}" bindtap="toCate" data-id="{{item.id}}">
+      <view class="icon_container">
+      <image src="{{item.icon}}"></image>
+      </view>
+       <text>{{item.name}}</text>
+      </view>
+    </view>
+</view>
