@@ -7,6 +7,10 @@
   width: 70%;
   height: 60px;
   line-height: 60px;
+  color:#E64340;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .lp_cart_detail_price_button{
   background-color: #E64340;

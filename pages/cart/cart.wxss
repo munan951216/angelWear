@@ -77,6 +77,7 @@ margin-top: 100px;
   width: 70%;
   height: 60px;
   line-height: 60px;
+  color:#E64340
 }
 .lp_total_footer button{
   background-color: #E64340;

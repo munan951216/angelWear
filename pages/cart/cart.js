@@ -42,6 +42,7 @@ Page({
     console.log(e)
     let key= e.currentTarget.dataset.item.key;
     let index = e.currentTarget.dataset.item.index;
+    console.log(this.data.cartItem)
     this.data.cartItem.splice(index,1)
     this.setData({
       cartItem:this.data.cartItem
