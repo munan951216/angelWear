@@ -26,6 +26,8 @@
         </view>
       </view>
     </view>
-    <view class="lp_total_footer"></view>
+    <view class="lp_total_footer">
+      
+    </view>
   </view>
 </view>
