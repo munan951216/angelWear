@@ -19,7 +19,8 @@
 	<view class="bargain_container_wrapper">
 		<text class="bargain_title">爆品推荐</text>
 		<van-grid column-num="2" gutter="{{ 10 }}">
-			<van-grid-item wx:for="{{hotgood}}" use-slot class="lp_hot_image"
+			<van-grid-item wx:for="{{hotgood}}" use-slot 
+			wx:key="index" class="lp_hot_image"
 			data-id="{{item.id}}}"
 			bindtap="toGOOd">
 				<image src="{{item.pic}}"></image>
@@ -35,7 +36,7 @@
 	<view style="height:164px">
 		<view class="kanjia_title">疯狂砍价</view>
 		<view>
-			<view wx:for="{{kanjia}}" class="kanjai_item_wrapper">
+			<view wx:for="{{kanjia}}"  wx:key="index" class="kanjai_item_wrapper">
 				<view class="kanjia_item_icon">
 					<image src="{{item.pic}}"></image>
 				</view>
@@ -55,7 +56,7 @@
 	<view class="bargain_container_wrapper">
 		<text class="bargain_title">全民拼团</text>
 		<van-grid column-num="1">
-			<van-grid-item wx:for="{{ tuan }}" use-slot>
+			<van-grid-item wx:for="{{ tuan }}" use-slot wx:key="index">
 				<image src="{{item.pic}}" style="width:96%;height:280px"></image>
 				<view>{{item.name}}</view>
 				<view style="margin:0px">{{item.characteristic}}</view>
@@ -71,7 +72,7 @@
 	<view class="bargain_container_wrapper">
 		<text class="bargain_title">商品列表</text>
 		<view class="lp_good_container">
-			<view class="lp_good_item_wrapper" wx:for="{{list}}"
+			<view class="lp_good_item_wrapper" wx:for="{{list}}" wx:key="index"
 			data-id="{{item.id}}"
 			bindtap="toDetailGood">
 				<view class="lp_good_icon">
